@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="mallette.png">
+  <title>Mentions légales – Kurt CHAVATTE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .glow-title {
+      background: linear-gradient(90deg, #ff2a2a, #ff5050, #ff2a2a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glowMove 4s ease-in-out infinite;
+      background-size: 200%;
+    }
+
+    @keyframes glowMove {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 50, 50, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(255, 40, 40, 0.2);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e53e3e;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p, .card a {
+      font-size: 0.97rem;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+
+    .card a {
+      color: #e53e3e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 50, 50, 0.15);
+      margin: 0.5rem 0 1.2rem 0;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-red-200">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-red-500">Mentions légales</h1>
+      <a href="index.html" class="text-lg font-medium hover:text-red-500">← Retour au portfolio</a>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 max-w-4xl mx-auto px-6 space-y-6">
+
+    <!-- Titre -->
+    <section class="section text-center mb-12">
+      <p class="text-sm font-bold text-red-500 tracking-widest uppercase mb-3">Informations légales</p>
+      <h2 class="text-5xl font-bold">
+        <span class="glow-title">Mentions légales</span> 📄
+      </h2>
+      <p class="mt-4 text-gray-500 text-lg">
+        Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique.
+      </p>
+    </section>
+
+    <!-- Éditeur du site -->
+    <div class="card section">
+      <h3>🧑‍💻 Éditeur du site</h3>
+      <hr class="divider">
+      <p><strong>Nom :</strong> Kurt CHAVATTE</p>
+      <p><strong>Statut :</strong> Étudiant en BTS SIO option SISR</p>
+      <p><strong>E-mail :</strong> <a href="mailto:kurtchavatte@gmail.com">kurtchavatte@gmail.com</a></p>
+      <p class="mt-2 text-sm text-gray-400 italic">
+        Ce site est un portfolio personnel réalisé dans le cadre de la formation BTS SIO. Il n'a pas de vocation commerciale.
+      </p>
+    </div>
+
+    <!-- Hébergement -->
+    <div class="card section">
+      <h3>🌐 Hébergement</h3>
+      <hr class="divider">
+      <p>
+        Ce site est hébergé à titre personnel. Les informations relatives à l'hébergeur sont disponibles
+        sur demande à l'adresse e-mail indiquée ci-dessus.
+      </p>
+    </div>
+
+    <!-- Propriété intellectuelle -->
+    <div class="card section">
+      <h3>🔒 Propriété intellectuelle</h3>
+      <hr class="divider">
+      <p>
+        L'ensemble du contenu de ce site (textes, images, structure) est la propriété exclusive de Kurt CHAVATTE,
+        sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable.
+      </p>
+    </div>
+
+    <!-- Données personnelles -->
+    <div class="card section">
+      <h3>🗂️ Données personnelles (RGPD)</h3>
+      <hr class="divider">
+      <p>
+        Ce site ne collecte aucune donnée personnelle à des fins commerciales. Aucun formulaire de collecte,
+        cookie de traçage ou outil d'analyse tiers n'est utilisé. Le seul traitement de données éventuel
+        concerne les échanges par e-mail initiés par l'utilisateur lui-même.
+      </p>
+      <p class="mt-2">
+        Conformément au <strong>Règlement Général sur la Protection des Données (RGPD)</strong> et à la loi
+        Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression
+        de vos données. Pour exercer ce droit, contactez :
+        <a href="mailto:kurtchavatte@gmail.com">kurtchavatte@gmail.com</a>.
+      </p>
+    </div>
+
+    <!-- Responsabilité -->
+    <div class="card section">
+      <h3>⚠️ Limitation de responsabilité</h3>
+      <hr class="divider">
+      <p>
+        Les informations présentées sur ce site sont fournies à titre indicatif et peuvent évoluer.
+        L'éditeur ne saurait être tenu responsable d'éventuelles erreurs ou omissions dans le contenu,
+        ni des dommages directs ou indirects liés à l'utilisation du site.
+      </p>
+      <p class="mt-2">
+        Les liens hypertextes vers des sites tiers sont proposés à titre informatif.
+        L'éditeur n'est pas responsable du contenu de ces sites externes.
+      </p>
+    </div>
+
+    <!-- Droit applicable -->
+    <div class="card section">
+      <h3>⚖️ Droit applicable</h3>
+      <hr class="divider">
+      <p>
+        Le présent site et ses mentions légales sont soumis au droit français.
+        En cas de litige, les tribunaux français seront seuls compétents.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 py-10 border-t border-red-200">
+    © 2025 – KC – BTS SIO
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+
+</body>
+</html>
