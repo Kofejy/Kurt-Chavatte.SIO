@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="mallette.png">
+  <title>Masterisation – Kurt CHAVATTE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .glow-title {
+      background: linear-gradient(90deg, #ff2a2a, #ff5050, #ff2a2a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glowMove 4s ease-in-out infinite;
+      background-size: 200%;
+    }
+
+    @keyframes glowMove {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 50, 50, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(255, 40, 40, 0.2);
+    }
+
+    .theme-intro {
+      background: linear-gradient(135deg, rgba(255,42,42,0.05) 0%, rgba(255,255,255,0) 100%);
+      border-left: 3px solid #ff2a2a;
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.4rem;
+    }
+
+    /* Étape numérotée */
+    .step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: #e53e3e;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 0 14px rgba(255, 40, 40, 0.35);
+      margin-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      line-height: 1.75;
+    }
+
+    .step-content code {
+      background: rgba(255, 40, 40, 0.07);
+      border: 1px solid rgba(255, 40, 40, 0.2);
+      color: #c53030;
+      border-radius: 6px;
+      padding: 1px 7px;
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+
+    /* Encadré capture d'écran */
+    .screenshot-slot {
+      margin-top: 1rem;
+      border: 2px dashed rgba(255, 50, 50, 0.3);
+      border-radius: 14px;
+      padding: 1.2rem;
+      background: rgba(255, 42, 42, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #9ca3af;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .screenshot-slot span.icon {
+      font-size: 1.8rem;
+    }
+
+    .screenshot-slot label {
+      font-weight: 600;
+      color: #e53e3e;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Connecteur entre étapes */
+    .step-connector {
+      width: 2px;
+      height: 24px;
+      background: linear-gradient(to bottom, #ff2a2a55, #ff2a2a22);
+      margin-left: 20px;
+      border-radius: 2px;
+    }
+
+    /* Badge info */
+    .badge-info {
+      display: inline-block;
+      background: rgba(255, 40, 40, 0.08);
+      border: 1px solid rgba(255, 40, 40, 0.25);
+      color: #e53e3e;
+      border-radius: 8px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 8px;
+      margin-bottom: 6px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 50, 50, 0.12);
+      margin: 1.2rem 0;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-red-200">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-red-500">Masterisation de poste</h1>
+      <a href="index.html" class="text-lg font-medium hover:text-red-500">← Retour au portfolio</a>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 max-w-4xl mx-auto px-6 space-y-10">
+
+    <!-- TITRE -->
+    <section class="section text-center mb-4">
+      <p class="text-sm font-bold text-red-500 tracking-widest uppercase mb-3">Procédure technique</p>
+      <h2 class="text-5xl font-bold mb-4">
+        <span class="glow-title">Masterisation de poste</span> 🖥️
+      </h2>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+        Remise à zéro et reconfiguration complète d'un poste à partir d'une image ISO Windows 11
+        personnalisée selon les besoins de l'entreprise.
+      </p>
+    </section>
+
+    <!-- CONTEXTE -->
+    <section class="section">
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4"><span class="glow-title">Contexte & objectifs</span> 🎯</h3>
+        <hr class="divider">
+        <p class="text-gray-600 leading-relaxed mb-4">
+          Dans le cadre de mon alternance chez <strong>Dupont Restauration</strong>, j'ai été amené à masteriser
+          des postes de travail lors de remplacements de matériel ou de réinstallations suite à des incidents.
+          La masterisation consiste à déployer une <strong>image ISO Windows 11 préconfigurée</strong>
+          contenant l'ensemble des paramètres, logiciels et configurations propres à l'entreprise,
+          garantissant un poste opérationnel rapidement et de manière homogène.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-5">
+          Cette procédure permet d'éviter les installations manuelles répétitives, de s'assurer que
+          chaque poste respecte les standards de sécurité de l'entreprise, et de réduire le temps
+          de remise en service pour les utilisateurs.
+        </p>
+
+        <div class="flex flex-wrap mt-2">
+          <span class="badge-info">Windows 11</span>
+          <span class="badge-info">ISO personnalisée</span>
+          <span class="badge-info">Clé USB bootable</span>
+          <span class="badge-info">Active Directory</span>
+          <span class="badge-info">GPO</span>
+          <span class="badge-info">Intégration domaine</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCÉDURE -->
+    <section class="section">
+      <h3 class="text-3xl font-bold mb-6"><span class="glow-title">Procédure pas à pas</span> 📋</h3>
+
+      <!-- Étape 1 -->
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content w-full">
+          <h4>Démarrage sur IPV4 (Boot BIOS/UEFI)</h4>
+          <p>
+            Redémarrage du poste et accès au menu de démarrage via la touche <code>F12</code>. Sélection de l'IPV4 comme périphérique de démarrage prioritaire.
+            Vérification que le mode <code>Secure Boot</code> est compatible ou temporairement désactivé si nécessaire.
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Etape1.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 2 -->
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content w-full">
+          <h4>Configuration initiale du poste</h4>
+          <p>
+            Après l'installation, Windows lance la phase de configuration initiale.
+            Saisie du nom du poste selon la convention de nommage de l'entreprise (ex : <code>PC-NOM-001</code>),
+            création d'un compte administrateur local temporaire et connexion au réseau de l'entreprise.
+            La configuration automatique issue de l'ISO préremplie certains paramètres.
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Debut.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 3 -->
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content w-full">
+          <h4>Lancement de l'installation Windows 11</h4>
+          <p>
+            Démarrage de l'assistant d'installation Windows 11. Sélection de la langue, du fuseau horaire
+            et de la disposition du clavier (<code>Français – France</code>). Clic sur
+            <code>Installer maintenant</code> pour lancer la procédure.
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Etape2.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 4 -->
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content w-full">
+          <h4>Installation du système</h4>
+          <p>
+            Windows 11 se déploie automatiquement sur le disque. Plusieurs redémarrages sont effectués
+            automatiquement durant cette phase. Le poste ne doit pas être éteint pendant toute la durée
+            de l'installation (environ 15 à 30 minutes selon la machine).
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Etape3.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 5 -->
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content w-full">
+          <h4>Installation des différents logiciels (Exemple:WinLogBeat)</h4>
+          <p>
+            Nous procédons ici aux derniers logiciels qui n'ont pas pu être installés via l'ISO personnalisée (Exemple ici avec WinLogBeat). Nous nous assurons dans un même
+            temps que toute les installations automatiques se sont déroulées correctement afin d'éviter tout problème.
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Etape4.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 6 -->
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content w-full">
+          <h4>Lancement des mises à jours Windows Update/BIOS/Dell Support Assist</h4>
+          <p>
+            Afin de s'assurer que le PC ne soit plus sujet au anciennes failles de sécurité, nous nous chargeons de mettre le PC à jour de fond en comble,
+            aussi bien sur Windows Update qu'avec Dell Support Assist ainsi que le BIOS.
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Etape6.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 7 -->
+      <div class="step">
+        <div class="step-number">7</div>
+        <div class="step-content w-full">
+          <h4>Vérifications finales et remise à l'utilisateur</h4>
+          <p>
+            Contrôle du bon fonctionnement de l'ensemble des éléments : accès réseau et Internet,
+            imprimantes disponibles, lecteurs réseau mappés, logiciels métier présents et fonctionnels.
+            Le poste est ensuite remis à l'utilisateur avec ses identifiants de domaine habituels,
+            accompagné d'une courte documentation d'utilisation si nécessaire.
+          </p>
+          <div class="screenshot-slot">
+            <img src="Masterisation/Etape7.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BILAN -->
+    <section class="section">
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4"><span class="glow-title">Bilan</span> ✅</h3>
+        <hr style="border:none;border-top:1px solid rgba(255,50,50,0.12);margin:0 0 1.2rem 0;">
+        <p class="text-gray-600 leading-relaxed">
+          Cette procédure de masterisation permet de déployer un poste de travail entièrement opérationnel
+          en moins d'une heure, en garantissant une configuration homogène et conforme aux standards de
+          l'entreprise. L'utilisation d'une ISO préconfigurée réduit considérablement les risques d'erreur
+          humaine par rapport à une installation manuelle, et facilite la maintenance du parc informatique
+          sur le long terme.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 py-10 border-t border-red-200">
+    © 2025 – KC – BTS SIO
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+
+</body>
+</html>
