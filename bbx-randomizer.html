@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="mallette.png">
+  <title>BBX Randomizer – Kurt CHAVATTE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .glow-title {
+      background: linear-gradient(90deg, #ff2a2a, #ff5050, #ff2a2a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glowMove 4s ease-in-out infinite;
+      background-size: 200%;
+    }
+
+    @keyframes glowMove {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 50, 50, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(255, 40, 40, 0.2);
+    }
+
+    .step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: #e53e3e;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 0 14px rgba(255, 40, 40, 0.35);
+      margin-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      line-height: 1.75;
+    }
+
+    .step-content code {
+      background: rgba(255, 40, 40, 0.07);
+      border: 1px solid rgba(255, 40, 40, 0.2);
+      color: #c53030;
+      border-radius: 6px;
+      padding: 1px 7px;
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+
+    .screenshot-slot {
+      margin-top: 1rem;
+      border: 2px dashed rgba(255, 50, 50, 0.3);
+      border-radius: 14px;
+      padding: 1.2rem;
+      background: rgba(255, 42, 42, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #9ca3af;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .screenshot-slot span.icon { font-size: 1.8rem; }
+
+    .screenshot-slot label {
+      font-weight: 600;
+      color: #e53e3e;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .step-connector {
+      width: 2px;
+      height: 24px;
+      background: linear-gradient(to bottom, #ff2a2a55, #ff2a2a22);
+      margin-left: 20px;
+      border-radius: 2px;
+    }
+
+    .badge-info {
+      display: inline-block;
+      background: rgba(255, 40, 40, 0.08);
+      border: 1px solid rgba(255, 40, 40, 0.25);
+      color: #e53e3e;
+      border-radius: 8px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 8px;
+      margin-bottom: 6px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 50, 50, 0.12);
+      margin: 1.2rem 0;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-red-200">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-red-500">BBX Randomizer</h1>
+      <a href="index.html" class="text-lg font-medium hover:text-red-500">← Retour au portfolio</a>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 max-w-4xl mx-auto px-6 space-y-10">
+
+    <!-- TITRE -->
+    <section class="section text-center mb-4">
+      <p class="text-sm font-bold text-red-500 tracking-widest uppercase mb-3">Projet personnel</p>
+      <h2 class="text-5xl font-bold mb-4">
+        <span class="glow-title">BBX Randomizer</span> 🎲
+      </h2>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+        Conception et déploiement d'un site web statique permettant de générer aléatoirement
+        des combinaisons de pièces Beyblade X (Blade, Ratchet, Bit).
+      </p>
+      <a href="https://bbxrandomize.websr.fr" target="_blank"
+         class="inline-block mt-6 px-7 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full font-semibold text-sm transition">
+        Voir le site en ligne ↗
+      </a>
+    </section>
+
+    <!-- CONTEXTE -->
+    <section class="section">
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4"><span class="glow-title">Contexte & objectifs</span> 🎯</h3>
+        <hr class="divider">
+        <p class="text-gray-600 leading-relaxed mb-4">
+          Ce projet est né d'une idée personnelle : créer un outil pratique pour les joueurs de
+          <strong>Beyblade X</strong>, un jeu de toupies compétitif proposant un grand nombre de pièces
+          combinables entre elles (Blade, Ratchet, Bit). L'objectif était de concevoir un
+          <strong>randomizer en ligne</strong> capable de générer instantanément une combinaison aléatoire,
+          utile pour découvrir de nouvelles configurations ou s'entraîner avec des contraintes imposées.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-5">
+          Ce projet m'a permis de mettre en pratique les compétences en développement web front-end
+          acquises durant ma formation BTS SIO : structuration HTML, mise en forme CSS et
+          logique JavaScript. Il a également été l'occasion de me familiariser avec le déploiement
+          d'un site sur un hébergement mutualisé, de la configuration FTP jusqu'à la mise en ligne.
+        </p>
+        <div class="flex flex-wrap mt-2">
+          <span class="badge-info">HTML</span>
+          <span class="badge-info">CSS</span>
+          <span class="badge-info">JavaScript</span>
+          <span class="badge-info">Site statique</span>
+          <span class="badge-info">FTP / FileZilla</span>
+          <span class="badge-info">Hébergement mutualisé</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCÉDURE -->
+    <section class="section">
+      <h3 class="text-3xl font-bold mb-6"><span class="glow-title">Conception & déploiement</span> 📋</h3>
+
+      <!-- Étape 1 -->
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content w-full">
+          <h4>Analyse du besoin et maquettage</h4>
+          <p>
+            Définition des fonctionnalités attendues : affichage des pièces disponibles par catégorie
+            (Blades, Ratchets, Bits), bouton de randomisation, affichage du résultat avec les images
+            correspondantes, et possibilité de fermer ou relancer un tirage. Réalisation d'une maquette
+            simple avant de passer au développement.
+          </p>
+          <div class="screenshot-slot">
+            <span class="icon">🖼️</span>
+            <label>Capture d'écran</label>
+            <span>Maquette ou premier aperçu de la structure de la page</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 2 -->
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content w-full">
+          <h4>Structure HTML de la page</h4>
+          <p>
+            Création du fichier <code>index.html</code> avec la structure de base : en-tête avec
+            le titre et les images de présentation, sections listant les pièces disponibles
+            par catégorie, bouton de randomisation et zone d'affichage du résultat.
+            Respect des bonnes pratiques de sémantique HTML.
+          </p>
+          <div class="screenshot-slot">
+            <img src="BBXRANDOMIZER/BBXCODE.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 3 -->
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content w-full">
+          <h4>Mise en forme CSS</h4>
+          <p>
+            Stylisation de la page : mise en page centrée, choix des couleurs et typographies,
+            adaptation responsive pour une utilisation confortable sur ordinateur et mobile.
+            Intégration des images des pièces Beyblade X en regard du contenu.
+          </p>
+          <div class="screenshot-slot">
+            <img src="BBXRANDOMIZER/PAGEBBX.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 4 -->
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content w-full">
+          <h4>Logique JavaScript – le moteur de randomisation</h4>
+          <p>
+            Développement de la logique de tirage aléatoire : récupération des listes de pièces
+            définies dans le HTML, sélection aléatoire via <code>Math.random()</code> dans chaque
+            catégorie (Blade, Ratchet, Bit), puis affichage dynamique du résultat.
+            Gestion des événements sur les boutons <code>Randomiser</code> et <code>Fermer</code>.
+          </p>
+          <div class="screenshot-slot">
+            <img src="BBXRANDOMIZER/JSBBX.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 5 -->
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content w-full">
+          <h4>Tests en local</h4>
+          <p>
+            Vérification du bon fonctionnement avant mise en ligne : test du tirage sur les trois
+            catégories, vérification de l'affichage des images, test sur différentes résolutions
+            via les outils développeur du navigateur (<code>F12 → DevTools</code>),
+            et correction des bugs identifiés.
+          </p>
+          <div class="screenshot-slot">
+            <img src="BBXRANDOMIZER/LOCALBBX.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 6 -->
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content w-full">
+          <h4>Configuration de l'hébergement mutualisé</h4>
+          <p>
+            Création d'un compte sur la plateforme <strong>websr.fr</strong> et enregistrement
+            du sous-domaine <code>bbxrandomize.websr.fr</code>. Configuration du répertoire
+            racine de publication et récupération des identifiants FTP fournis par l'hébergeur
+            pour le transfert des fichiers.
+          </p>
+          <div class="screenshot-slot">
+          <img src="BBXRANDOMIZER/CONFBBX.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 7 -->
+      <div class="step">
+        <div class="step-number">7</div>
+        <div class="step-content w-full">
+          <h4>Transfert des fichiers via FTP</h4>
+          <p>
+            Envoi des fichiers du site (<code>index.html</code>, CSS, JavaScript et images)
+            sur le serveur distant via le client FTP <strong>FileZilla</strong>.
+            Vérification que l'arborescence est correcte côté serveur et que
+            <code>index.html</code> est bien placé à la racine du répertoire de publication.
+          </p>
+          <div class="screenshot-slot">
+            <img src="BBXRANDOMIZER/FTPBBX.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <!-- Étape 8 -->
+      <div class="step">
+        <div class="step-number">8</div>
+        <div class="step-content w-full">
+          <h4>Vérification en ligne et mise en production</h4>
+          <p>
+            Accès au site via <code>https://bbxrandomize.websr.fr</code> pour vérifier que
+            l'ensemble des fichiers est correctement servi : affichage des images, fonctionnement
+            du randomizer, rendu sur mobile. Vérification que le certificat
+            <strong>SSL/HTTPS</strong> est bien actif sur le sous-domaine.
+          </p>
+          <div class="screenshot-slot">
+            <img src="BBXRANDOMIZER/WEBSRBBX.png" style="border-radius: 6px;" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BILAN -->
+    <section class="section">
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4"><span class="glow-title">Bilan</span> ✅</h3>
+        <hr class="divider">
+        <p class="text-gray-600 leading-relaxed mb-3">
+          Ce projet m'a permis de consolider mes compétences en développement web front-end
+          dans un cadre concret et personnel. De la conception à la mise en ligne, j'ai géré
+          l'intégralité du cycle de vie d'un projet web : analyse du besoin, développement,
+          tests et déploiement.
+        </p>
+        <p class="text-gray-600 leading-relaxed">
+          La contrainte d'un site entièrement statique m'a amené à réfléchir à la meilleure
+          manière de structurer les données directement dans le HTML et de piloter l'affichage
+          uniquement via JavaScript. Le site est aujourd'hui accessible en ligne à l'adresse
+          <a href="https://bbxrandomize.websr.fr" target="_blank"
+             class="text-red-500 font-semibold underline underline-offset-4 hover:text-red-700">
+            bbxrandomize.websr.fr ↗
+          </a>.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 py-10 border-t border-red-200">
+    © 2025 – KC – BTS SIO - <a href="mentions-legales.html">Mentions légales</a>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+
+</body>
+</html>
