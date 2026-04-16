@@ -1,0 +1,269 @@
+<svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 1000" width="1220" height="1000" style="font-family:'Segoe UI',sans-serif;display:block;">
+                        <defs>
+                            <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L0,6L8,3z" fill="#555"/></marker>
+                            <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L0,6L8,3z" fill="#c0392b"/></marker>
+                            <marker id="ad" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L0,6L8,3z" fill="#d4a017"/></marker>
+                            <marker id="ap" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L0,6L8,3z" fill="#8e44ad"/></marker>
+                            <marker id="ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L0,6L8,3z" fill="#2980b9"/></marker>
+                            <marker id="av" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0L0,6L8,3z" fill="#d35400"/></marker>
+                            <filter id="sh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.13"/></filter>
+                        </defs>
+
+                        <!-- LÉGENDE PPE4 -->
+                        <rect x="990" y="20" width="210" height="186" rx="6" fill="#f5f0fa" stroke="#8e44ad" stroke-width="1.5"/>
+                        <text x="1095" y="38" text-anchor="middle" font-size="9.5" font-weight="700" fill="#5b2c8e">📌 PPE4 — ADMINISTRATION</text>
+                        <line x1="1003" y1="50" x2="1027" y2="50" stroke="#8e44ad" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#ap)"/>
+                        <text x="1031" y="53" font-size="8.5" fill="#8e44ad">Admin MobaXterm (Client PC)</text>
+                        <line x1="1003" y1="66" x2="1027" y2="66" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ab)"/>
+                        <text x="1031" y="69" font-size="8.5" fill="#2980b9">GLPI Agent (Client PC)</text>
+                        <line x1="1003" y1="82" x2="1027" y2="82" stroke="#d35400" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#av)"/>
+                        <text x="1031" y="85" font-size="8.5" fill="#d35400">Veeam Backup (Client → AD)</text>
+                        
+                        <rect x="1002" y="94" width="192" height="14" rx="3" fill="rgba(142,68,173,.12)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="1098" y="105" text-anchor="middle" font-size="7.5" fill="#5b2c8e">Contour violet = cible Admin</text>
+                        <text x="1003" y="123" font-size="8" fill="#555">🖱 MobaXterm : RDP (Win) / SSH (Lin)</text>
+                        <text x="1003" y="136" font-size="8" fill="#555">🖱 MobaXterm : Web/SSH (Réseau)</text>
+                        <text x="1003" y="149" font-size="8" fill="#555">📦 GLPI Agent : Uniquement Postes Clients</text>
+                        <text x="1003" y="162" font-size="8" fill="#555">🔒 VPN IPsec : StrongEncryption</text>
+                        <text x="1003" y="175" font-size="8" fill="#555">🛡 2FA OTP activée sur Stormshield</text>
+
+                        <!-- INTERNET -->
+                        <ellipse cx="580" cy="46" rx="110" ry="28" fill="#e2e3e5" stroke="#9a9b9d" stroke-width="1.5" filter="url(#sh)"/>
+                        <ellipse cx="515" cy="55" rx="50" ry="24" fill="#e2e3e5" stroke="#9a9b9d" stroke-width="1.5"/>
+                        <ellipse cx="645" cy="55" rx="50" ry="24" fill="#e2e3e5" stroke="#9a9b9d" stroke-width="1.5"/>
+                        <rect x="465" y="54" width="230" height="24" fill="#e2e3e5"/>
+                        <text x="580" y="60" text-anchor="middle" font-size="12.5" font-weight="700" fill="#333">☁ INTERNET / WAN</text>
+                        <line x1="580" y1="79" x2="580" y2="108" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+
+                        <!-- FIREWALL -->
+                        <rect x="446" y="110" width="300" height="96" rx="8" fill="#f8d7da" stroke="#8e44ad" stroke-width="2.5" filter="url(#sh)"/>
+                        <text x="468" y="133" font-size="11.5" font-weight="700" fill="#7b0000">🛡 Stormshield SNS 310</text>
+                        <text x="468" y="149" font-size="9.5" fill="#a00">Pare-feu · VPN IPsec (StrongEncryption) · DENY ALL</text>
+                        
+                        <!-- Tags LAN / DMZ -->
+                        <rect x="468" y="158" width="110" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="523" y="168" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">LAN: 192.168.54.254</text>
+                        <rect x="585" y="158" width="110" height="14" rx="3" fill="#fff3cd" stroke="#d4a017" stroke-width="0.5"/>
+                        <text x="640" y="168" text-anchor="middle" font-size="8" font-weight="bold" fill="#7d5a00">DMZ: 192.168.64.254</text>
+
+                        <!-- TAGS 2FA et MOBAXTERM -->
+                        <rect x="615" y="116" width="46" height="16" rx="3" fill="#8e44ad"/>
+                        <text x="638" y="127" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">🔐 2FA</text>
+                        <rect x="665" y="116" width="75" height="16" rx="3" fill="rgba(142,68,173,.1)" stroke="#8e44ad" stroke-width=".5"/>
+                        <text x="702" y="127" text-anchor="middle" font-size="7" fill="#8e44ad">🖱 MobaXterm</text>
+
+                        <rect x="452" y="182" width="288" height="18" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width="1"/>
+                        <text x="596" y="194" text-anchor="middle" font-size="8.5" fill="#5b2c8e">✔ Authentification 2FA OTP activée — PPE4</text>
+
+                        <!-- FW → Switch -->
+                        <line x1="490" y1="206" x2="388" y2="295" stroke="#5cb85c" stroke-width="2" marker-end="url(#a)"/>
+                        <text x="404" y="247" font-size="9" fill="#155724" transform="rotate(-30,404,247)">LAN</text>
+                        
+                        <!-- FW → HAProxy -->
+                        <line x1="680" y1="206" x2="900" y2="300" stroke="#d4a017" stroke-width="2" marker-end="url(#ad)"/>
+                        <text x="800" y="245" font-size="9" fill="#7d5a00" transform="rotate(22,800,245)">DMZ</text>
+
+                        <!-- ZONE LAN -->
+                        <rect x="20" y="265" width="798" height="330" rx="10" fill="#d4edda" stroke="#5cb85c" stroke-width="2" opacity="0.5"/>
+                        <text x="35" y="285" font-size="11.5" font-weight="700" fill="#155724">🟢 ZONE LAN — 192.168.54.0/24</text>
+
+                        <!-- Switch -->
+                        <rect x="296" y="295" width="184" height="70" rx="6" fill="#fff" stroke="#5cb85c" stroke-width="1.5" filter="url(#sh)"/>
+                        <text x="388" y="317" text-anchor="middle" font-size="10.5" font-weight="700" fill="#155724">🔀 Switch TP-Link SG-3424</text>
+                        <rect x="348" y="325" width="80" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="388" y="335" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.20</text>
+                        <rect x="338" y="342" width="100" height="12" rx="3" fill="rgba(142,68,173,.1)" stroke="#8e44ad" stroke-width=".5"/>
+                        <text x="388" y="352" text-anchor="middle" font-size="7" fill="#8e44ad">🖱 MobaXterm (Web/SSH)</text>
+
+                        <!-- WiFi (Déplacé à droite du Switch) -->
+                        <rect x="600" y="295" width="128" height="70" rx="6" fill="#fff" stroke="#5cb85c" stroke-width="1.5" filter="url(#sh)"/>
+                        <text x="664" y="316" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">📶 Wi-Fi TP-Link</text>
+                        <rect x="624" y="325" width="80" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="664" y="335" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.30</text>
+                        <rect x="614" y="342" width="100" height="12" rx="3" fill="rgba(142,68,173,.1)" stroke="#8e44ad" stroke-width=".5"/>
+                        <text x="664" y="352" text-anchor="middle" font-size="7" fill="#8e44ad">🖱 MobaXterm (Web/SSH)</text>
+                        <!-- Ligne Switch -> Wi-Fi -->
+                        <line x1="480" y1="320" x2="600" y2="320" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+
+                        <!-- Clients (Poste Admin) -->
+                        <rect x="56" y="360" width="128" height="92" rx="6" fill="#fff" stroke="#2980b9" stroke-width="2" filter="url(#sh)"/>
+                        <text x="120" y="376" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">💻 Poste Client Admin</text>
+                        <text x="120" y="388" text-anchor="middle" font-size="8.5" fill="#555">DHCP .54.100–200</text>
+                        
+                        <rect x="70" y="396" width="88" height="12" rx="3" fill="rgba(41,128,185,.15)" stroke="#2980b9" stroke-width=".8"/>
+                        <text x="120" y="405" text-anchor="middle" font-size="7.5" fill="#2980b9">📦 GLPI Agent</text>
+                        
+                        <rect x="70" y="412" width="88" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="120" y="421" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 MobaXterm</text>
+
+                        <rect x="66" y="428" width="96" height="12" rx="3" fill="rgba(230,126,34,.15)" stroke="#e67e22" stroke-width=".8"/>
+                        <text x="114" y="437" text-anchor="middle" font-size="7.5" fill="#d35400">💾 Console Veeam</text>
+
+                        <!-- Switch → Client -->
+                        <line x1="296" y1="335" x2="184" y2="390" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+
+                        <!-- Switch → ESXi -->
+                        <line x1="388" y1="347" x2="388" y2="387" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+
+                        <!-- ESXi Principal -->
+                        <rect x="284" y="389" width="208" height="70" rx="6" fill="#fff" stroke="#5cb85c" stroke-width="1.5" filter="url(#sh)"/>
+                        <text x="388" y="412" text-anchor="middle" font-size="10.5" font-weight="700" fill="#155724">🖥 VMware ESXi 7.0</text>
+                        <rect x="348" y="422" width="80" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="388" y="432" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.1</text>
+                        <rect x="338" y="438" width="100" height="12" rx="3" fill="rgba(142,68,173,.1)" stroke="#8e44ad" stroke-width=".5"/>
+                        <text x="388" y="448" text-anchor="middle" font-size="7" fill="#8e44ad">🖱 MobaXterm (Web/SSH)</text>
+
+                        <!-- ESXi → HAProxy (DMZ) Lien logique -->
+                        <line x1="492" y1="424" x2="846" y2="340" stroke="#555" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#a)"/>
+
+                        <!-- ESXi → VMs LAN -->
+                        <line x1="300" y1="459" x2="84" y2="483" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+                        <line x1="388" y1="459" x2="356" y2="483" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+                        <line x1="430" y1="459" x2="488" y2="483" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+                        <line x1="470" y1="459" x2="618" y2="483" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+
+                        <!-- VM AD (LAN) -->
+                        <rect x="30" y="483" width="108" height="96" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="84" y="502" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">🗂 SRV-EL-AD</text>
+                        <rect x="44" y="512" width="80" height="12" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="84" y="521" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.10</text>
+                        <rect x="34" y="528" width="100" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="84" y="537" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 RDP MobaXterm</text>
+                        <rect x="34" y="544" width="100" height="12" rx="3" fill="rgba(230,126,34,.15)" stroke="#e67e22" stroke-width=".8"/>
+                        <text x="84" y="553" text-anchor="middle" font-size="7.5" fill="#d35400">💾 Sauvegarde Veeam</text>
+
+                        <!-- VM RADIUS (LAN) - Connecté uniquement à AD -->
+                        <rect x="168" y="483" width="114" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="225" y="502" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">🔐 SRV-EL-RADIUS</text>
+                        <rect x="185" y="512" width="80" height="12" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="225" y="521" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.11</text>
+                        <rect x="175" y="528" width="100" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="225" y="537" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 RDP MobaXterm</text>
+
+                        <!-- FLÈCHE AD → RADIUS -->
+                        <line x1="138" y1="523" x2="168" y2="523" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+
+                        <!-- VM Zimbra (LAN) -->
+                        <rect x="296" y="483" width="120" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="356" y="502" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">📧 SRV-EL-MAIL</text>
+                        <rect x="316" y="512" width="80" height="12" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="356" y="521" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.40</text>
+                        <rect x="306" y="528" width="100" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="356" y="537" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 SSH MobaXterm</text>
+
+                        <!-- VM WEB-01 -->
+                        <rect x="430" y="483" width="116" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="488" y="502" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">🌐 SRV-EL-WEB-01</text>
+                        <rect x="448" y="512" width="80" height="12" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="488" y="521" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.15</text>
+                        <rect x="434" y="528" width="108" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="488" y="537" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 SSH MobaXterm</text>
+
+                        <!-- VM WEB-02 -->
+                        <rect x="560" y="483" width="116" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="618" y="502" text-anchor="middle" font-size="10" font-weight="700" fill="#155724">🌐 SRV-EL-WEB-02</text>
+                        <rect x="578" y="512" width="80" height="12" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="618" y="521" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">192.168.54.16</text>
+                        <rect x="564" y="528" width="108" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="618" y="537" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 SSH MobaXterm</text>
+
+                        <!-- ZONE DMZ -->
+                        <rect x="740" y="265" width="460" height="140" rx="10" fill="#fff3cd" stroke="#d4a017" stroke-width="2" opacity="0.75"/>
+                        <text x="755" y="285" font-size="11.5" font-weight="700" fill="#7d5a00">🟡 ZONE DMZ — 192.168.64.0/24</text>
+                        
+                        <!-- HAProxy (DMZ) -->
+                        <rect x="846" y="300" width="248" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="970" y="324" text-anchor="middle" font-size="11" font-weight="700" fill="#7d5a00">⚖ SRV-EL-PROXY (HAProxy)</text>
+                        <rect x="930" y="332" width="80" height="14" rx="3" fill="#fff3cd" stroke="#d4a017" stroke-width="0.5"/>
+                        <text x="970" y="342" text-anchor="middle" font-size="8" font-weight="bold" fill="#7d5a00">192.168.64.1</text>
+                        <rect x="870" y="348" width="120" height="12" rx="3" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width=".8"/>
+                        <text x="930" y="357" text-anchor="middle" font-size="7.5" fill="#8e44ad">🖱 SSH MobaXterm</text>
+
+                        <!-- HAProxy → WEB-01 / WEB-02 (Flux DMZ -> LAN) -->
+                        <line x1="880" y1="380" x2="520" y2="483" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ad)"/>
+                        <line x1="930" y1="380" x2="650" y2="483" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ad)"/>
+                        
+                        <rect x="680" y="415" width="54" height="14" fill="#fff" rx="3" opacity="0.8"/>
+                        <text x="707" y="426" text-anchor="middle" font-size="8.5" fill="#7d5a00" font-weight="bold">HTTP LB</text>
+                        
+                        <rect x="760" y="435" width="54" height="14" fill="#fff" rx="3" opacity="0.8"/>
+                        <text x="787" y="446" text-anchor="middle" font-size="8.5" fill="#7d5a00" font-weight="bold">HTTP LB</text>
+
+                        <!-- Flux Sauvegarde Veeam -->
+                        <line x1="100" y1="452" x2="84" y2="483" stroke="#d35400" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#av)"/>
+
+                        <!-- GLPI_Agent flow -->
+                        <path d="M 153 452 C 153 600, 164 650, 164 774" fill="none" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#ab)"/>
+                        <text x="160" y="650" font-size="8" fill="#2980b9" transform="rotate(90,160,650)">📦 Rapport GLPI Agent</text>
+
+                        <!-- VPN LINE -->
+                        <line x1="22" y1="785" x2="1198" y2="785" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="9,4"/>
+                        <text x="580" y="777" text-anchor="middle" font-size="9.5" fill="#c0392b" font-weight="700">🔒 Tunnel VPN IPsec — Chiffrement StrongEncryption</text>
+                        <line x1="580" y1="206" x2="580" y2="755" stroke="#c0392b" stroke-width="1.8" stroke-dasharray="9,4"/>
+
+                        <!-- SIÈGE TENERIFE -->
+                        <rect x="22" y="800" width="285" height="170" rx="8" fill="#dce7f5" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="164" y="820" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a5c">🏢 SIÈGE TENERIFE</text>
+                        <rect x="114" y="828" width="100" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="164" y="838" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">LAN: 192.168.57.0/24</text>
+                        <text x="35" y="852" font-size="9" fill="#555">📊 Centreon / Supervision SNMP</text>
+                        <text x="35" y="866" font-size="9" fill="#555">💾 NAS RAID-5 / Veeam B&amp;R</text>
+                        <rect x="30" y="874" width="268" height="34" rx="4" fill="rgba(142,68,173,.15)" stroke="#8e44ad" stroke-width="1.5"/>
+                        <text x="164" y="890" text-anchor="middle" font-size="9.5" font-weight="700" fill="#5b2c8e">🖱 MobaXterm — Admin centralisé</text>
+                        <text x="164" y="903" text-anchor="middle" font-size="8" fill="#5b2c8e">RDP / SSH / Web → Agence El Hierro</text>
+                        <rect x="30" y="912" width="268" height="42" rx="4" fill="rgba(41,128,185,.18)" stroke="#2980b9" stroke-width="1.5"/>
+                        <text x="164" y="928" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a5276">📦 GLPI · 192.168.57.60</text>
+                        <text x="164" y="942" text-anchor="middle" font-size="8.5" fill="#1a5276">Helpdesk + Inventaire automatique</text>
+                        <rect x="114" y="958" width="100" height="14" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="0.5"/>
+                        <text x="164" y="968" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">WAN: 192.168.69.97</text>
+                        <line x1="164" y1="785" x2="164" y2="800" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#ar)"/>
+
+                        <!-- MobaXterm Flow -->
+                        <path d="M 307 855 Q 480 860 480 206" fill="none" stroke="#8e44ad" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#ap)"/>
+                        <text x="400" y="870" font-size="8" fill="#8e44ad">Administration Centralisée</text>
+
+                        <!-- La Palma -->
+                        <rect x="330" y="804" width="168" height="96" rx="8" fill="#d1ecf1" stroke="#17a2b8" stroke-width="2" filter="url(#sh)"/>
+                        <text x="414" y="823" text-anchor="middle" font-size="11" font-weight="700" fill="#0c4b5c">🏝 LA PALMA</text>
+                        <rect x="364" y="831" width="100" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="414" y="841" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">LAN: 192.168.56.0/24</text>
+                        <rect x="364" y="865" width="100" height="14" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="0.5"/>
+                        <text x="414" y="875" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">WAN: 192.168.69.96</text>
+                        <line x1="414" y1="785" x2="414" y2="804" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#ar)"/>
+
+                        <!-- La Gomera -->
+                        <rect x="518" y="804" width="168" height="96" rx="8" fill="#d1ecf1" stroke="#17a2b8" stroke-width="2" filter="url(#sh)"/>
+                        <text x="602" y="823" text-anchor="middle" font-size="11" font-weight="700" fill="#0c4b5c">🏝 LA GOMERA</text>
+                        <rect x="552" y="831" width="100" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="602" y="841" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">LAN: 192.168.55.0/24</text>
+                        <rect x="552" y="865" width="100" height="14" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="0.5"/>
+                        <text x="602" y="875" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">WAN: 192.168.69.95</text>
+                        <line x1="602" y1="785" x2="602" y2="804" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#ar)"/>
+
+                        <!-- Gran Canaria -->
+                        <rect x="706" y="804" width="186" height="96" rx="8" fill="#d1ecf1" stroke="#17a2b8" stroke-width="2" filter="url(#sh)"/>
+                        <text x="799" y="823" text-anchor="middle" font-size="11" font-weight="700" fill="#0c4b5c">🏝 GRAN CANARIA</text>
+                        <rect x="749" y="831" width="100" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="799" y="841" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">LAN: 192.168.53.0/24</text>
+                        <rect x="749" y="865" width="100" height="14" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="0.5"/>
+                        <text x="799" y="875" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">WAN: 192.168.69.93</text>
+                        <line x1="799" y1="785" x2="799" y2="804" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#ar)"/>
+
+                        <!-- El Hierro -->
+                        <rect x="912" y="804" width="168" height="96" rx="8" fill="#f0f4ff" stroke="#8e44ad" stroke-width="2" filter="url(#sh)"/>
+                        <text x="996" y="823" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">📍 EL HIERRO</text>
+                        <rect x="946" y="831" width="100" height="14" rx="3" fill="#d4edda" stroke="#5cb85c" stroke-width="0.5"/>
+                        <text x="996" y="841" text-anchor="middle" font-size="8" font-weight="bold" fill="#155724">LAN: 192.168.54.0/24</text>
+                        <rect x="946" y="860" width="100" height="14" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="0.5"/>
+                        <text x="996" y="870" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">WAN: 192.168.69.94</text>
+                        <line x1="996" y1="785" x2="996" y2="804" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#ar)"/>
+
+                        <!-- Adressage recap -->
+                        <rect x="22" y="627" width="440" height="82" rx="6" fill="#f5f0fa" stroke="#8e44ad" stroke-width="1"/>
+                        <text x="32" y="643" font-size="8.5" font-weight="700" fill="#5b2c8e">📋 Plan d'adressage PPE4</text>
+                        <text x="32" y="657" font-size="8" fill="#555">LAN : 192.168.54.0/24 · DMZ : 192.168.64.0/24 · Réplication : 192.168.69.0/24</text>
+                        <text x="32" y="671" font-size="8" fill="#555">AD .54.10 (RDP) · WEB-01 .54.15 (SSH) · WEB-02 .54.16 (SSH)</text>
+                        <text x="32" y="685" font-size="8" fill="#555">SNS310 .54.254 (HTTPS admin 2FA) · Siège TF : 192.168.57.0/24</text>
+                        <text x="32" y="699" font-size="8" fill="#8e44ad">GLPI : 192.168.57.60 · Tous accès via VPN IPsec StrongEncryption</text>
+
+                    </svg>

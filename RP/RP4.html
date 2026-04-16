@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../mallette.png">
+  <title>Projet CICAR RP4 – Kurt CHAVATTE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .glow-title {
+      background: linear-gradient(90deg, #ff2a2a, #ff5050, #ff2a2a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glowMove 4s ease-in-out infinite;
+      background-size: 200%;
+    }
+
+    @keyframes glowMove {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 50, 50, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(255, 40, 40, 0.2);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 50, 50, 0.12);
+      margin: 1.2rem 0;
+    }
+
+    .badge-info {
+      display: inline-block;
+      background: rgba(255, 40, 40, 0.08);
+      border: 1px solid rgba(255, 40, 40, 0.25);
+      color: #e53e3e;
+      border-radius: 8px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 8px;
+      margin-bottom: 6px;
+    }
+
+    .theme-intro {
+      background: linear-gradient(135deg, rgba(255,42,42,0.05) 0%, rgba(255,255,255,0) 100%);
+      border-left: 3px solid #ff2a2a;
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .etape {
+      background: rgba(255, 42, 42, 0.03);
+      border-left: 3px solid #e53e3e;
+      border-radius: 0 14px 14px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0 1rem 0;
+    }
+
+    .etape h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .etape p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .code-block {
+      background: #1a1a2e;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin: 1rem 0;
+      line-height: 1.7;
+    }
+
+    .code-block .comment { color: #718096; }
+    .code-block .keyword { color: #fc8181; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+      margin: 1.2rem 0;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+
+    thead tr { background: rgba(255, 42, 42, 0.06); }
+
+    th {
+      color: #e53e3e;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      border-bottom: 2px solid rgba(255, 50, 50, 0.2);
+      text-align: left;
+    }
+
+    td {
+      padding: 11px 16px;
+      border-bottom: 1px solid rgba(255, 50, 50, 0.08);
+      vertical-align: top;
+      color: #374151;
+      font-size: 0.88rem;
+    }
+
+    td code {
+      background: rgba(255, 40, 40, 0.07);
+      border: 1px solid rgba(255, 40, 40, 0.2);
+      color: #c53030;
+      border-radius: 6px;
+      padding: 1px 7px;
+      font-size: 0.82rem;
+      font-family: monospace;
+    }
+
+    .table-group-header {
+      background: rgba(255, 42, 42, 0.05);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #c53030;
+    }
+
+    .screenshot-slot {
+      margin-top: 1rem;
+      border: 2px dashed rgba(255, 50, 50, 0.3);
+      border-radius: 14px;
+      padding: 1.2rem;
+      background: rgba(255, 42, 42, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #9ca3af;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .screenshot-slot .icon { font-size: 1.8rem; }
+
+    .screenshot-slot label {
+      font-weight: 700;
+      color: #e53e3e;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .screenshot-slot img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+      margin-top: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .screenshot-slot img:hover { opacity: 0.85; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .section-badge {
+      width: 36px;
+      height: 36px;
+      background: #e53e3e;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 14px rgba(255, 40, 40, 0.35);
+      flex-shrink: 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .bilan-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 50, 50, 0.08);
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .bilan-item:last-child { border-bottom: none; }
+    .bilan-check { color: #e53e3e; font-weight: 700; flex-shrink: 0; }
+
+    /* Procédure GLPI */
+    .procedure-step {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 50, 50, 0.08);
+    }
+
+    .procedure-step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      background: #e53e3e;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px rgba(255, 40, 40, 0.3);
+      margin-top: 2px;
+    }
+
+    .step-body h5 {
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .step-body p, .step-body li {
+      font-size: 0.9rem;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+
+    .step-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+
+    /* Comparaison incident/service */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+
+    .compare-col {
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+    }
+
+    .compare-col.incident {
+      background: rgba(255, 42, 42, 0.04);
+      border-left: 3px solid #e53e3e;
+    }
+
+    .compare-col.service {
+      background: rgba(34, 197, 94, 0.04);
+      border-left: 3px solid #16a34a;
+    }
+
+    .compare-col h5 { font-weight: 700; margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .compare-col.incident h5 { color: #e53e3e; }
+    .compare-col.service h5 { color: #16a34a; }
+    .compare-col ul { padding-left: 1.2rem; font-size: 0.88rem; color: #4b5563; }
+
+    /* Champs formulaire */
+    .form-field {
+      display: flex;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 50, 50, 0.15);
+    }
+
+    .form-field .field-label {
+      min-width: 110px;
+      background: rgba(255, 42, 42, 0.06);
+      padding: 9px 14px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: #e53e3e;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-field .field-desc {
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      color: #4b5563;
+      flex: 1;
+    }
+
+    .field-desc.highlight-field {
+      background: rgba(255, 42, 42, 0.03);
+    }
+
+    /* Rappel important */
+    .rappel {
+      background: rgba(255, 42, 42, 0.05);
+      border: 1px solid rgba(255, 50, 50, 0.25);
+      border-left: 3px solid #e53e3e;
+      border-radius: 0 14px 14px 0;
+      padding: 1rem 1.4rem;
+      margin-top: 1.5rem;
+    }
+
+    .rappel strong { color: #e53e3e; }
+
+    /* RE4 section badge */
+    .re4-badge {
+      background: #e53e3e;
+      color: white;
+      font-weight: 800;
+      font-size: 0.78rem;
+      border-radius: 8px;
+      padding: 4px 12px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Modal */
+    dialog {
+      border: none;
+      background: transparent;
+      overflow: visible;
+    }
+
+    dialog::backdrop {
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content { position: relative; display: inline-block; }
+
+    .close-btn {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 32px;
+      height: 32px;
+      background: #e53e3e;
+      color: white;
+      border: 2px solid white;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+
+    .close-btn:hover { transform: scale(1.1); }
+
+    dialog img {
+      max-height: 85vh;
+      max-width: 85vw;
+      border-radius: 10px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-red-200">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-red-500">Projet CICAR – RP4</h1>
+      <a href="../index.html" class="text-lg font-medium hover:text-red-500">← Retour au portfolio</a>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 max-w-4xl mx-auto px-6 space-y-10">
+
+    <!-- TITRE -->
+    <section class="section text-center mb-4">
+      <p class="text-sm font-bold text-red-500 tracking-widest uppercase mb-3">RP 4 – Parcours de professionnalisation</p>
+      <h2 class="text-5xl font-bold mb-4">
+        <span class="glow-title">Accès distant & Helpdesk</span> 🔐
+      </h2>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+        Mise en place d'un accès distant sécurisé avec double authentification,
+        déploiement du helpdesk GLPI, et maquettage d'une solution de redondance FAI
+        avec le protocole HSRP sur routeurs Cisco.
+      </p>
+    </section>
+
+    <!-- A — LA DEMANDE -->
+    <section class="section">
+      <div class="card">
+        <div class="section-header">
+          <div class="section-badge">A</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">La demande</span></h3>
+        </div>
+        <hr class="divider">
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+          L'administrateur du siège de Tenerife souhaitait disposer d'un
+          <strong>accès distant sécurisé et centralisé</strong> sur l'ensemble des équipements
+          de chaque agence. En parallèle, la gestion des incidents devait être structurée
+          via un outil de helpdesk dédié. Enfin, suite à une panne FAI de deux jours
+          sur l'agence de Madère, une solution de <strong>redondance de connexion internet</strong>
+          a été maquettée pour éviter ce type de situation.
+        </p>
+
+        <h4 class="font-bold text-gray-800 mb-2">Objectifs du RP 4</h4>
+        <div class="theme-intro">
+          <ul class="text-gray-600 text-sm space-y-2 list-none">
+            <li>➜ Centraliser les connexions d'administration sous MobaXterm (SSH, RDP, HTTPS)</li>
+            <li>➜ Activer la double authentification 2FA sur le pare-feu Stormshield (Google Authenticator)</li>
+            <li>➜ Gérer et vérifier les flux réseaux via les règles de filtrage</li>
+            <li>➜ Déployer GLPI avec GLPI_Agent pour l'inventaire automatique et le helpdesk</li>
+            <li>➜ Tester les remontées d'équipements et le cycle de vie des tickets</li>
+            <li>➜ Rédiger une procédure utilisateur pour la création de tickets GLPI</li>
+            <li>➜ Maquetter une solution de redondance FAI avec HSRP (Cisco)</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap mt-4">
+          <span class="badge-info">MobaXterm</span>
+          <span class="badge-info">2FA / OTP</span>
+          <span class="badge-info">Stormshield</span>
+          <span class="badge-info">GLPI</span>
+          <span class="badge-info">VPN IPsec</span>
+          <span class="badge-info">HSRP</span>
+          <span class="badge-info">Cisco</span>
+          <span class="badge-info">NAT</span>
+          <span class="badge-info">SSH</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- B — LE PLAN -->
+    <section class="section">
+      <div class="card">
+        <div class="section-header">
+          <div class="section-badge">B</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">Le plan</span></h3>
+        </div>
+        <hr class="divider">
+
+        <h4 class="font-bold text-gray-800 mb-3">Plan d'adressage IP</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Équipement / VM</th>
+                <th>Rôle</th>
+                <th>Adresse IP</th>
+                <th>Accès</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-group-header">
+                <td colspan="4">🏢 Agence El Hierro — 192.168.54.0/24</td>
+              </tr>
+              <tr>
+                <td>Stormshield SNS 310</td>
+                <td>Pare-feu / VPN (<strong>2FA activé</strong>)</td>
+                <td><code>192.168.54.254</code></td>
+                <td>Interface web + code OTP</td>
+              </tr>
+              <tr>
+                <td>AD / DNS / DHCP</td>
+                <td>Windows Server 2019</td>
+                <td><code>192.168.54.10</code></td>
+                <td>RDP</td>
+              </tr>
+              <tr>
+                <td>SRV-EL-WEB-01</td>
+                <td>Serveur Apache</td>
+                <td><code>192.168.54.15</code></td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>SRV-EL-WEB-02</td>
+                <td>Serveur Apache</td>
+                <td><code>192.168.54.16</code></td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>SRV-EL-PROXY</td>
+                <td>HAProxy (DMZ)</td>
+                <td><code>192.168.64.1</code></td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>ESXi principal</td>
+                <td>Hyperviseur LAN</td>
+                <td><code>192.168.54.1</code></td>
+                <td>Interface web ESXi</td>
+              </tr>
+              <tr>
+                <td>ESXi secondaire</td>
+                <td>Hyperviseur (Load Balancing)</td>
+                <td><code>192.168.69.94</code></td>
+                <td>Interface web ESXi</td>
+              </tr>
+              <tr>
+                <td>TP-Link SG-3424</td>
+                <td>Switch manageable</td>
+                <td><code>192.168.54.20</code></td>
+                <td>Interface web admin</td>
+              </tr>
+              <tr>
+                <td>AP WiFi WA901N</td>
+                <td>Borne WiFi 802.1X</td>
+                <td><code>192.168.54.30</code></td>
+                <td>Interface web admin</td>
+              </tr>
+              <tr class="table-group-header">
+                <td colspan="4">🏢 Siège Tenerife — 192.168.57.0/24</td>
+              </tr>
+              <tr>
+                <td>Zimbra Mail</td>
+                <td>Messagerie</td>
+                <td><code>192.168.57.40</code></td>
+                <td>HTTPS</td>
+              </tr>
+              <tr>
+                <td>Centreon</td>
+                <td>Supervision SNMP</td>
+                <td><code>192.168.57.50</code></td>
+                <td>HTTPS</td>
+              </tr>
+              <tr>
+                <td>TrueNAS</td>
+                <td>NAS RAID-5 (Veeam)</td>
+                <td><code>192.168.57.2</code></td>
+                <td>Interface web admin</td>
+              </tr>
+              <tr>
+                <td><strong>GLPI</strong></td>
+                <td><strong>Helpdesk & Inventaire</strong></td>
+                <td><strong><code>192.168.57.60</code></strong></td>
+                <td>HTTPS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="font-bold text-gray-800 mt-6 mb-3">Schéma d'infrastructure</h4>
+        <div class="screenshot-slot">
+          <span class="icon">🖼️</span>
+          <label>Schéma réseau</label>
+          <img src="schema_base_cicar_complet.svg" style="border-radius: 6px;" alt="">
+          <span>Infrastructure réseau avant déploiement des solutions d'accès distant — segmentation par VLANs et sécurisation Stormshield</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- C — LE PROJET -->
+    <section class="section">
+      <div class="card">
+        <div class="section-header">
+          <div class="section-badge">C</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">Le projet</span></h3>
+        </div>
+        <hr class="divider">
+
+        <!-- 1. MobaXterm -->
+        <div class="etape">
+          <h4>🖥️ 1. Accès distant centralisé — MobaXterm</h4>
+          <p>
+            MobaXterm permet de centraliser toutes les connexions d'administration depuis un seul outil :
+            SSH vers les serveurs Linux, RDP vers le serveur Active Directory, et HTTPS vers
+            l'interface web du Stormshield. L'ensemble des sessions transite via le tunnel VPN IPsec
+            déjà en place entre l'agence El Hierro et le siège de Tenerife.
+            Cette centralisation simplifie le travail de l'administrateur et réduit les risques d'erreur
+            liés à la multiplication des outils.
+          </p>
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">🔌</span>
+          <label>Capture — Sessions MobaXterm</label>
+          <img src="Capture d'écran 2026-03-30 151438.png" alt="MobaXterm sessions"
+               onclick="document.getElementById('m1').showModal()">
+          <dialog id="m1"><div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('m1').close()">×</button>
+            <img src="Capture d'écran 2026-03-30 151438.png" alt="MobaXterm sessions">
+          </div></dialog>
+          <span>Sessions SSH, RDP et HTTPS enregistrées pour l'ensemble des équipements de l'agence El Hierro</span>
+        </div>
+
+        <!-- 2. 2FA -->
+        <div class="etape">
+          <h4>🔐 2. Double authentification 2FA — Google Authenticator</h4>
+          <p>
+            Pour renforcer la sécurité des accès administratifs au pare-feu Stormshield SNS 310,
+            l'authentification à deux facteurs a été activée. La méthode retenue est le
+            <strong>One Time Password (OTP)</strong> via l'application <strong>Google Authenticator</strong> :
+            après avoir saisi son mot de passe, l'administrateur doit entrer un code à usage unique
+            généré par son téléphone, renouvelé toutes les 30 secondes. Cette double vérification
+            empêche toute connexion même en cas de vol du mot de passe.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot">
+            <span class="icon">⚙️</span>
+            <label>Activation 2FA — Stormshield</label>
+            <img src="Capture d'écran 2026-03-30 113708.png" alt="Activation 2FA"
+                 onclick="document.getElementById('m2').showModal()">
+            <dialog id="m2"><div class="modal-content">
+              <button class="close-btn" onclick="document.getElementById('m2').close()">×</button>
+              <img src="Capture d'écran 2026-03-30 113708.png">
+            </div></dialog>
+            <span>Interface Stormshield — activation de la 2FA pour l'administrateur via Google Authenticator (OTP)</span>
+          </div>
+          <div class="screenshot-slot">
+            <span class="icon">🔢</span>
+            <label>Connexion avec code OTP</label>
+            <img src="Capture d'écran 2026-03-30 113919.png" alt="Connexion OTP"
+                 onclick="document.getElementById('m3').showModal()">
+            <dialog id="m3"><div class="modal-content">
+              <button class="close-btn" onclick="document.getElementById('m3').close()">×</button>
+              <img src="Capture d'écran 2026-03-30 113919.png">
+            </div></dialog>
+            <span>Page de connexion demandant le code OTP généré par Google Authenticator après saisie du mot de passe</span>
+          </div>
+        </div>
+
+        <!-- 3. VPN -->
+        <div class="etape">
+          <h4>🌐 3. Gestion des flux — Tunnel VPN IPsec</h4>
+          <p>
+            Un tunnel VPN IPsec est maintenu entre le Stormshield SNS 310 de l'agence El Hierro
+            et le pare-feu du siège de Tenerife. Ce tunnel chiffré sécurise l'ensemble
+            des communications entre les deux sites : accès distants des administrateurs,
+            transferts de sauvegardes Veeam vers le NAS, et synchronisation des données.
+            Le profil de chiffrement retenu est <strong>StrongEncryption</strong>.
+          </p>
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">🔗</span>
+          <label>Capture — Tunnels VPN IPsec actifs</label>
+          <img src="Capture d'écran 2026-03-30 085743.png" alt="Tunnels VPN"
+               onclick="document.getElementById('m4').showModal()">
+          <dialog id="m4"><div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('m4').close()">×</button>
+            <img src="Capture d'écran 2026-03-30 085743.png">
+          </div></dialog>
+          <span>Console Stormshield SNS 310 — tunnels VPN IPsec établis entre El Hierro (192.168.54.0/24) et le siège Tenerife (Site_FW_TF)</span>
+        </div>
+
+        <!-- 4. GLPI -->
+        <div class="etape">
+          <h4>📦 4. Déploiement GLPI — Inventaire & Helpdesk</h4>
+          <p>
+            GLPI est installé au siège de Tenerife et accessible depuis toutes les agences via le VPN.
+            L'agent GLPI_Agent est déployé sur l'ensemble des postes et serveurs : il remonte
+            automatiquement l'inventaire matériel et logiciel de chaque machine dans la console GLPI,
+            sans intervention manuelle. Cette solution permet également aux utilisateurs de soumettre
+            des tickets d'incident ou des demandes de service directement depuis leur navigateur.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot">
+            <span class="icon">🖥️</span>
+            <label>GLPI — Inventaire matériel</label>
+            <img src="glpi_inventory.png" alt="GLPI inventaire"
+                 onclick="document.getElementById('m5').showModal()">
+            <dialog id="m5"><div class="modal-content">
+              <button class="close-btn" onclick="document.getElementById('m5').close()">×</button>
+              <img src="glpi_inventory.png">
+            </div></dialog>
+            <span>Liste des équipements remontés automatiquement par GLPI_Agent dans la console</span>
+          </div>
+          <div class="screenshot-slot">
+            <span class="icon">⚙️</span>
+            <label>Installation GLPI Agent</label>
+            <img src="glpi_tickets.png" alt="GLPI Agent"
+                 onclick="document.getElementById('m6').showModal()">
+            <dialog id="m6"><div class="modal-content">
+              <button class="close-btn" onclick="document.getElementById('m6').close()">×</button>
+              <img src="glpi_tickets.png">
+            </div></dialog>
+            <span>Déploiement et configuration de GLPI_Agent sur un poste client</span>
+          </div>
+        </div>
+
+        <!-- 5. Tests -->
+        <div class="etape">
+          <h4>🧪 5. Tests des remontées et tickets</h4>
+          <p>
+            Plusieurs tests ont été réalisés pour valider le bon fonctionnement de l'ensemble :
+            connexion d'un nouveau poste au réseau et vérification de sa remontée automatique
+            dans l'inventaire GLPI, création d'un ticket depuis un compte utilisateur
+            et vérification de la notification reçue par l'administrateur, puis traitement
+            complet du ticket (prise en charge, changement de statut, clôture).
+          </p>
+        </div>
+
+        <!-- 6. Procédure GLPI -->
+        <div class="etape">
+          <h4>📝 6. Procédure utilisateur — Créer un ticket GLPI</h4>
+          <p>
+            Une procédure a été rédigée à destination des utilisateurs non-techniciens
+            pour leur permettre de soumettre des demandes de manière autonome et structurée.
+          </p>
+        </div>
+
+        <!-- Procédure détaillée -->
+        <div class="mt-4 p-6 rounded-2xl" style="background: rgba(255,42,42,0.02); border: 1px solid rgba(255,50,50,0.15);">
+
+          <p class="text-sm text-gray-500 leading-relaxed mb-5">
+            Cette procédure décrit les étapes à suivre pour soumettre une demande via GLPI,
+            qu'il s'agisse d'un incident (dysfonctionnement) ou d'une demande de service.
+            Toute demande doit impérativement transiter par GLPI pour garantir
+            un traitement structuré, un suivi efficace et une traçabilité complète.
+          </p>
+
+          <div class="procedure-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h5>Accès à la plateforme</h5>
+              <ul>
+                <li>Ouvrir un navigateur et aller sur <code style="background:rgba(255,40,40,0.07);border:1px solid rgba(255,40,40,0.2);color:#c53030;border-radius:6px;padding:1px 7px;font-family:monospace;font-size:0.82rem;">https://glpi.el-cicars.es</code></li>
+                <li>S'authentifier avec ses identifiants professionnels</li>
+                <li>Depuis la page d'accueil, choisir entre <strong>« Signaler un problème »</strong> ou <strong>« Demander un service »</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h5>Choix du type de demande</h5>
+              <div class="compare-grid mt-2">
+                <div class="compare-col incident">
+                  <h5>⚠️ Signaler un problème</h5>
+                  <ul>
+                    <li>Application indisponible</li>
+                    <li>Incident matériel</li>
+                    <li>Message d'erreur</li>
+                  </ul>
+                </div>
+                <div class="compare-col service">
+                  <h5>✦ Demander un service</h5>
+                  <ul>
+                    <li>Demande d'accès ou de droits</li>
+                    <li>Installation de logiciel</li>
+                    <li>Demande de matériel</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="procedure-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h5>Remplissage du formulaire</h5>
+              <div class="mt-2 space-y-1">
+                <div class="form-field"><div class="field-label">Urgence</div><div class="field-desc">Faible, moyenne ou élevée selon l'impact constaté</div></div>
+                <div class="form-field"><div class="field-label">Catégorie</div><div class="field-desc">Matériel, logiciel, réseau, accès…</div></div>
+                <div class="form-field"><div class="field-label">Matériel</div><div class="field-desc">Équipement concerné si applicable</div></div>
+                <div class="form-field"><div class="field-label">Lieu</div><div class="field-desc">Site ou emplacement géographique concerné</div></div>
+                <div class="form-field"><div class="field-label">Titre</div><div class="field-desc">Court et explicite — ex : « Impossible d'accéder à l'application métier »</div></div>
+                <div class="form-field"><div class="field-label">Description</div><div class="field-desc highlight-field">Décrire précisément : le problème, le contexte, la date d'apparition, les messages d'erreur et les actions déjà effectuées</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="procedure-step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h5>Ajout de pièces jointes</h5>
+              <ul>
+                <li>Joindre des captures d'écran illustrant le problème</li>
+                <li>Ajouter tout fichier journal ou document utile au diagnostic</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h5>Validation et envoi</h5>
+              <ul>
+                <li>Vérifier les informations saisies avant envoi</li>
+                <li>Cliquer sur <strong>« Envoyer »</strong> pour créer le ticket</li>
+                <li>Une confirmation est transmise automatiquement par e-mail</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-step" style="border-bottom: none;">
+            <div class="step-num">6</div>
+            <div class="step-body">
+              <h5>Suivi de la demande</h5>
+              <ul>
+                <li>Accéder à <strong>« Voir vos tickets »</strong> depuis la page d'accueil</li>
+                <li>Tous les échanges avec le support sont centralisés dans le ticket</li>
+                <li>Toute mise à jour génère une notification e-mail automatique</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="rappel mt-4">
+            <strong>📌 Rappel important —</strong> Toute demande, incident ou service,
+            doit impérativement être effectuée via GLPI pour garantir un traitement structuré,
+            un suivi efficace et une traçabilité complète pour le service informatique.
+            En cas d'urgence critique, contacter également le support par téléphone.
+          </div>
+        </div>
+
+        <!-- Screenshots tickets GLPI -->
+        <div class="screenshot-slot mt-6">
+          <span class="icon">📋</span>
+          <label>Formulaire de création de ticket GLPI</label>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;width:100%;margin-top:0.5rem;">
+            <div style="width:31%;">
+              <img src="glpi_ticket_form_1.jpg" alt="Ticket étape 1" onclick="document.getElementById('gt1').showModal()" style="width:100%">
+              <dialog id="gt1"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('gt1').close()">×</button><img src="glpi_ticket_form_1.jpg"></div></dialog>
+            </div>
+            <div style="width:31%;">
+              <img src="glpi_ticket_form_2.jpg" alt="Ticket étape 2" onclick="document.getElementById('gt2').showModal()" style="width:100%">
+              <dialog id="gt2"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('gt2').close()">×</button><img src="glpi_ticket_form_2.jpg"></div></dialog>
+            </div>
+            <div style="width:31%;">
+              <img src="glpi_ticket_form_3.jpg" alt="Ticket étape 3" onclick="document.getElementById('gt3').showModal()" style="width:100%">
+              <dialog id="gt3"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('gt3').close()">×</button><img src="glpi_ticket_form_3.jpg"></div></dialog>
+            </div>
+          </div>
+          <span>Cliquez sur une capture pour l'agrandir</span>
+        </div>
+
+        <!-- Bilan RP4 -->
+        <div class="mt-8 p-6 rounded-2xl" style="background: rgba(255,42,42,0.03); border: 1px solid rgba(255,50,50,0.2);">
+          <h4 class="font-bold text-lg text-red-500 mb-4">📋 Livrables RP4 validés</h4>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Accès distant centralisé MobaXterm (SSH, RDP, HTTPS) via VPN IPsec</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Double authentification 2FA (Google Authenticator) activée sur Stormshield</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Règles de filtrage vérifiées et flux réseau maîtrisés</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>GLPI + GLPI_Agent déployés (inventaire automatique + helpdesk)</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Tests de remontées d'inventaire et cycle de vie des tickets validés</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Procédure utilisateur helpdesk rédigée et illustrée</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Maquettage redondance FAI avec HSRP Cisco réalisé</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RE4 — HSRP -->
+    <section class="section" id="re4">
+      <div class="card">
+        <div class="section-header">
+          <div class="re4-badge">RE4</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">Redondance FAI — Maquettage HSRP</span></h3>
+        </div>
+        <hr class="divider">
+
+        <div class="theme-intro">
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Suite à une panne FAI de deux jours sur l'agence de Madère qui a paralysé l'activité,
+            le gérant a demandé une solution de <strong>redondance de la connexion internet</strong>.
+            La solution retenue est le protocole <strong>HSRP (Hot Standby Router Protocol)</strong>
+            avec deux routeurs Cisco, permettant un basculement automatique et transparent
+            en cas de défaillance du lien WAN principal.
+          </p>
+        </div>
+
+        <!-- Contexte -->
+        <h4 class="font-bold text-gray-800 mt-2 mb-3">Contexte et solution retenue</h4>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          L'architecture maquettée repose sur deux routeurs Cisco connectés chacun à un FAI différent.
+          Les clients du LAN utilisent une <strong>IP virtuelle unique (192.168.1.254)</strong>
+          comme passerelle par défaut — gérée par HSRP. En cas de panne du routeur actif,
+          le routeur de secours prend automatiquement le relais sans aucune reconfiguration
+          côté client. Un <strong>tracking d'interface WAN</strong> déclenche le basculement
+          dès que le lien internet principal tombe.
+        </p>
+
+        <!-- Plan d'adressage maquette -->
+        <h4 class="font-bold text-gray-800 mb-3">Plan d'adressage de la maquette</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Équipement</th><th>Interface</th><th>Adresse IP</th><th>Rôle</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>router1</td><td>Fa0/3/0</td><td><code>192.168.1.250/24</code></td><td>LAN — ip nat inside</td></tr>
+              <tr><td>router1</td><td>Fa0/3/1</td><td>DHCP (FAI 1)</td><td>WAN — ip nat outside</td></tr>
+              <tr><td>router2</td><td>Fa0/3/0</td><td><code>192.168.1.251/24</code></td><td>LAN — ip nat inside</td></tr>
+              <tr><td>router2</td><td>Fa0/3/1</td><td>DHCP (FAI 2)</td><td>WAN — ip nat outside</td></tr>
+              <tr><td><strong>HSRP VIP</strong></td><td>—</td><td><strong><code>192.168.1.254</code></strong></td><td>Passerelle virtuelle partagée</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Schéma -->
+        <div class="screenshot-slot mt-4">
+          <span class="icon">🗺️</span>
+          <label>Schéma — Architecture HSRP maquettée</label>
+          <img src="schema-hsrp.png" alt="Schéma HSRP"
+               onclick="document.getElementById('mschema').showModal()">
+          <dialog id="mschema"><div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('mschema').close()">×</button>
+            <img src="schema-hsrp.png">
+          </div></dialog>
+          <span>FAI 1 → R1 (192.168.1.250) — FAI 2 → R2 (192.168.1.251) — VIP HSRP : 192.168.1.254 — Poste client GW : 192.168.1.254</span>
+        </div>
+
+        <!-- Étape 1 : Interfaces -->
+        <div class="etape mt-6">
+          <h4>🔧 Étape 1 — Configuration des interfaces</h4>
+          <p>
+            Sur chaque routeur, l'interface LAN (<code>Fa0/3/0</code>) est configurée avec une IP fixe
+            dans le réseau <code>192.168.1.0/24</code>, et l'interface WAN (<code>Fa0/3/1</code>)
+            est configurée en DHCP pour récupérer une adresse auprès du FAI correspondant.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot">
+            <span class="icon">🖥️</span>
+            <label>Interfaces — Router1</label>
+            <img src="conf-interfaces-router1.png" alt="Interfaces router1"
+                 onclick="document.getElementById('mr1i').showModal()">
+            <dialog id="mr1i"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mr1i').close()">×</button><img src="conf-interfaces-router1.png"></div></dialog>
+            <span>Fa0/3/0 : 192.168.1.250/24 (LAN) — Fa0/3/1 : DHCP (WAN FAI 1)</span>
+          </div>
+          <div class="screenshot-slot">
+            <span class="icon">🖥️</span>
+            <label>Interfaces — Router2</label>
+            <img src="conf-interfaces-router2.png" alt="Interfaces router2"
+                 onclick="document.getElementById('mr2i').showModal()">
+            <dialog id="mr2i"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mr2i').close()">×</button><img src="conf-interfaces-router2.png"></div></dialog>
+            <span>Fa0/3/0 : 192.168.1.251/24 (LAN) — Fa0/3/1 : DHCP (WAN FAI 2)</span>
+          </div>
+        </div>
+
+        <!-- Étape 2 : HSRP -->
+        <div class="etape">
+          <h4>⚡ Étape 2 — Configuration HSRP</h4>
+          <p>
+            Router1 est configuré avec une priorité de 95 et le mode <code>preempt</code> activé,
+            ce qui lui permet de reprendre le rôle de routeur actif dès son retour en ligne.
+            Un <strong>tracking sur l'interface WAN</strong> réduit automatiquement sa priorité de 10
+            si le lien internet tombe, provoquant le basculement vers router2 qui dispose
+            d'une priorité par défaut de 100.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <span class="comment"># Configuration HSRP sur router1</span><br>
+          interface fastEthernet 0/3/0<br>
+          &nbsp;standby 1 ip 192.168.1.254<br>
+          &nbsp;standby 1 priority 95<br>
+          &nbsp;standby 1 preempt<br>
+          &nbsp;standby 1 track fastEthernet 0/3/1 10
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot">
+            <span class="icon">⚙️</span>
+            <label>HSRP — Router1</label>
+            <img src="config-hsrp-router1.png" alt="HSRP router1"
+                 onclick="document.getElementById('mh1').showModal()">
+            <dialog id="mh1"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mh1').close()">×</button><img src="config-hsrp-router1.png"></div></dialog>
+            <span>VIP 192.168.1.254 — Priorité 95 — Preempt — Track Fa0/3/1</span>
+          </div>
+          <div class="screenshot-slot">
+            <span class="icon">⚙️</span>
+            <label>HSRP — Router2</label>
+            <img src="conf-standby-router2.png" alt="HSRP router2"
+                 onclick="document.getElementById('mh2').showModal()">
+            <dialog id="mh2"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mh2').close()">×</button><img src="conf-standby-router2.png"></div></dialog>
+            <span>Priorité 100 (défaut) — devient actif si router1 bascule</span>
+          </div>
+        </div>
+
+        <!-- Étape 3 : NAT -->
+        <div class="etape">
+          <h4>🌐 Étape 3 — NAT overload sur les deux routeurs</h4>
+          <p>
+            Le NAT overload (PAT) est configuré sur chaque routeur pour permettre à l'ensemble
+            des postes du LAN (<code>192.168.1.0/24</code>) de sortir sur internet via l'interface
+            WAN du routeur actuellement actif dans le groupe HSRP.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <span class="comment"># NAT overload — même configuration sur router1 et router2</span><br>
+          access-list 1 permit 192.168.1.0 0.0.0.255<br>
+          ip nat inside source list 1 interface fastEthernet 0/3/1 overload
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot">
+            <span class="icon">🔄</span>
+            <label>NAT — Router1</label>
+            <img src="nat-router1.png" alt="NAT router1"
+                 onclick="document.getElementById('mn1').showModal()">
+            <dialog id="mn1"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mn1').close()">×</button><img src="nat-router1.png"></div></dialog>
+            <span>NAT overload sur Fa0/3/1 — access-list 1 / 192.168.1.0/24</span>
+          </div>
+          <div class="screenshot-slot">
+            <span class="icon">🔄</span>
+            <label>NAT — Router2</label>
+            <img src="nat-router2.png" alt="NAT router2"
+                 onclick="document.getElementById('mn2').showModal()">
+            <dialog id="mn2"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mn2').close()">×</button><img src="nat-router2.png"></div></dialog>
+            <span>NAT overload sur Fa0/3/1 — access-list 1 / 192.168.1.0/24</span>
+          </div>
+        </div>
+
+        <!-- Étape 4 : SSH -->
+        <div class="etape">
+          <h4>🔐 Étape 4 — Activation SSH pour l'accès distant sécurisé</h4>
+          <p>
+            SSH version 2 est configuré sur chaque routeur pour permettre l'administration
+            à distance de manière sécurisée. Une clé RSA de 2048 bits est générée,
+            et l'accès par Telnet est désactivé sur les lignes VTY au profit de SSH uniquement.
+          </p>
+        </div>
+
+        <div class="code-block">
+          aaa new-model<br>
+          username adminlocal secret Afpi5962!<br>
+          ip domain-name cicar.es<br>
+          crypto key generate rsa <span class="comment">  ← 2048 bits</span><br>
+          ip ssh version 2<br>
+          line vty 0 4<br>
+          &nbsp;transport input ssh<br>
+          &nbsp;transport output ssh
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">🔐</span>
+          <label>Installation SSH — Router1</label>
+          <img src="install-ssh-router.png" alt="SSH router"
+               onclick="document.getElementById('mssh').showModal()">
+          <dialog id="mssh"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('mssh').close()">×</button><img src="install-ssh-router.png"></div></dialog>
+          <span>Génération de la clé RSA 2048 bits — SSH v2 activé — domaine cicar.es</span>
+        </div>
+
+        <!-- Étape 5 : Vérification -->
+        <div class="etape">
+          <h4>🧪 Étape 5 — Tests et validation HSRP</h4>
+          <p>
+            La commande <code style="background:rgba(255,40,40,0.07);border:1px solid rgba(255,40,40,0.2);color:#c53030;border-radius:6px;padding:1px 7px;font-family:monospace;font-size:0.85rem;">show standby</code> sur chaque routeur
+            permet de confirmer l'état HSRP, la priorité effective, l'IP virtuelle active
+            et l'état du tracking d'interface. Un test de basculement a été réalisé
+            en simulant une panne du lien WAN de router1 : router2 a pris le relais
+            automatiquement, sans interruption pour les clients du LAN.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot">
+            <span class="icon">🟢</span>
+            <label>show standby — Router1</label>
+            <img src="show-standby-router1.png" alt="Show standby router1"
+                 onclick="document.getElementById('ms1').showModal()">
+            <dialog id="ms1"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('ms1').close()">×</button><img src="show-standby-router1.png"></div></dialog>
+            <span>State : <strong>Active</strong> — VIP 192.168.1.254 — Priorité 95 — Track Fa0/3/1 (Up, -10)</span>
+          </div>
+          <div class="screenshot-slot">
+            <span class="icon">🟡</span>
+            <label>show standby — Router2</label>
+            <img src="show-standby-router2.png" alt="Show standby router2"
+                 onclick="document.getElementById('ms2').showModal()">
+            <dialog id="ms2"><div class="modal-content"><button class="close-btn" onclick="document.getElementById('ms2').close()">×</button><img src="show-standby-router2.png"></div></dialog>
+            <span>State : <strong>Active</strong> (lors du basculement) — VIP 192.168.1.254 — Priorité 100</span>
+          </div>
+        </div>
+
+        <!-- Bilan RE4 -->
+        <div class="mt-8 p-6 rounded-2xl" style="background: rgba(255,42,42,0.03); border: 1px solid rgba(255,50,50,0.2);">
+          <h4 class="font-bold text-lg text-red-500 mb-4">📋 Livrables RE4 validés</h4>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Maquette redondance FAI avec deux routeurs Cisco</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>HSRP groupe 1 — IP virtuelle 192.168.1.254 configurée et opérationnelle</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>NAT overload configuré sur les deux routeurs</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Tracking WAN avec basculement automatique validé</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>SSH version 2 configuré pour l'accès distant sécurisé</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Vérification <code style="background:rgba(255,40,40,0.07);border:1px solid rgba(255,40,40,0.2);color:#c53030;border-radius:6px;padding:1px 5px;font-family:monospace;font-size:0.8rem;">show standby</code> validée — clients LAN sans interruption lors du failover</span></div>
+        </div>
+
+        <!-- Schéma final -->
+        <h4 class="font-bold text-gray-800 mt-8 mb-3">Schéma réseau final — RP4</h4>
+        <div class="screenshot-slot">
+          <span class="icon">🗺️</span>
+          <label>Schéma final RP4</label>
+          <img src="schema_ppe4_cicar.svg" alt="">
+          <span>Architecture complète incluant les accès distants sécurisés (2FA), le helpdesk GLPI et l'administration centralisée via MobaXterm</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 py-10 border-t border-red-200">
+    © 2025 – KC – BTS SIO - <a href="mentions-legales.html">Mentions légales</a>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+
+</body>
+</html>

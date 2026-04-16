@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../mallette.png">
+  <title>Projet CICAR – Kurt CHAVATTE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .glow-title {
+      background: linear-gradient(90deg, #ff2a2a, #ff5050, #ff2a2a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glowMove 4s ease-in-out infinite;
+      background-size: 200%;
+    }
+
+    @keyframes glowMove {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 50, 50, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(255, 40, 40, 0.2);
+    }
+
+    .theme-intro {
+      background: linear-gradient(135deg, rgba(255,42,42,0.05) 0%, rgba(255,255,255,0) 100%);
+      border-left: 3px solid #ff2a2a;
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 50, 50, 0.12);
+      margin: 1.2rem 0;
+    }
+
+    .badge-info {
+      display: inline-block;
+      background: rgba(255, 40, 40, 0.08);
+      border: 1px solid rgba(255, 40, 40, 0.25);
+      color: #e53e3e;
+      border-radius: 8px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 8px;
+      margin-bottom: 6px;
+    }
+
+    /* Étapes */
+    .etape {
+      background: rgba(255, 42, 42, 0.03);
+      border-left: 3px solid #e53e3e;
+      border-radius: 0 14px 14px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0 1rem 0;
+    }
+
+    .etape h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .etape p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* Bloc code */
+    .code-block {
+      background: #1a1a2e;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin: 1rem 0;
+      line-height: 1.7;
+    }
+
+    .code-block .comment {
+      color: #718096;
+    }
+
+    .code-block .keyword {
+      color: #fc8181;
+    }
+
+    /* Tableau */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+      margin: 1.2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    thead tr {
+      background: rgba(255, 42, 42, 0.06);
+    }
+
+    th {
+      color: #e53e3e;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      border-bottom: 2px solid rgba(255, 50, 50, 0.2);
+      text-align: left;
+    }
+
+    td {
+      padding: 11px 16px;
+      border-bottom: 1px solid rgba(255, 50, 50, 0.08);
+      vertical-align: top;
+      color: #374151;
+      font-size: 0.88rem;
+    }
+
+    td code, th code {
+      background: rgba(255, 40, 40, 0.07);
+      border: 1px solid rgba(255, 40, 40, 0.2);
+      color: #c53030;
+      border-radius: 6px;
+      padding: 1px 7px;
+      font-size: 0.82rem;
+      font-family: monospace;
+    }
+
+    .table-group-header {
+      background: rgba(255, 42, 42, 0.05);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #c53030;
+    }
+
+    /* Encadré photo */
+    .screenshot-slot {
+      margin-top: 1rem;
+      border: 2px dashed rgba(255, 50, 50, 0.3);
+      border-radius: 14px;
+      padding: 1.2rem;
+      background: rgba(255, 42, 42, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #9ca3af;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .screenshot-slot .icon { font-size: 1.8rem; }
+
+    .screenshot-slot label {
+      font-weight: 700;
+      color: #e53e3e;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Photo réelle */
+    .screenshot-slot img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 50, 50, 0.2);
+      margin-top: 0.5rem;
+    }
+
+    /* Bilan livrable */
+    .bilan-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 50, 50, 0.08);
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .bilan-item:last-child { border-bottom: none; }
+
+    .bilan-check {
+      color: #e53e3e;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Section letter badge */
+    .section-badge {
+      display: inline-block;
+      background: #e53e3e;
+      color: white;
+      font-weight: 800;
+      font-size: 0.9rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 14px rgba(255, 40, 40, 0.35);
+      flex-shrink: 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-red-200">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-red-500">Projet CICAR</h1>
+      <a href="../index.html" class="text-lg font-medium hover:text-red-500">← Retour au portfolio</a>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 max-w-4xl mx-auto px-6 space-y-10">
+
+    <!-- TITRE -->
+    <section class="section text-center mb-4">
+      <p class="text-sm font-bold text-red-500 tracking-widest uppercase mb-3">RP 2 – Parcours de professionnalisation</p>
+      <h2 class="text-5xl font-bold mb-4">
+        <span class="glow-title">Projet CICAR</span> 🚗
+      </h2>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+        Externalisation des serveurs de réservation, mise en place d'un load balancing
+        et d'une solution de sauvegarde automatisée pour une agence de location
+        automobile aux Îles Canaries.
+      </p>
+    </section>
+
+    <!-- A — LA DEMANDE -->
+    <section class="section">
+      <div class="card">
+        <div class="section-header">
+          <div class="section-badge">A</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">La demande</span></h3>
+        </div>
+        <hr class="divider">
+
+        <h4 class="font-bold text-lg text-gray-800 mb-2">Présentation de l'entreprise</h4>
+        <p class="text-gray-600 leading-relaxed mb-4">
+          <strong>CICAR</strong> est une société de location automobile implantée aux Îles Canaries,
+          avec un siège social à Tenerife et plusieurs agences locales interconnectées via des tunnels
+          <strong>VPN IPsec</strong>. Dans le cadre de ce projet, l'agence concernée est celle
+          d'<strong>El Hierro (Valverde)</strong>, opérant sur le réseau <code>192.168.54.0/24</code>.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-5">
+          Suite à une panne inter-îles ayant paralysé le système de réservation pendant plusieurs heures,
+          la direction a décidé d'<strong>externaliser localement les serveurs de réservation</strong>
+          afin de ne plus dépendre uniquement de la connectivité avec le siège. Un mécanisme de
+          <strong>répartition de charge</strong> et une <strong>sauvegarde automatique</strong>
+          vers le NAS du siège étaient également attendus.
+        </p>
+
+        <h4 class="font-bold text-lg text-gray-800 mb-2">Objectifs du projet</h4>
+        <div class="theme-intro" style="margin-bottom:0">
+          <ul class="text-gray-600 text-sm space-y-2 leading-relaxed list-none">
+            <li>➜ Mettre en place une architecture trois-tiers : HAProxy en DMZ → deux serveurs web en miroir dans le LAN</li>
+            <li>➜ Configurer un load balancing round-robin avec détection automatique de panne</li>
+            <li>➜ Assurer des sauvegardes quotidiennes des VMs vers le NAS RAID-5 du siège via Veeam</li>
+            <li>➜ Sauvegarder les configurations des équipements réseau (Stormshield, switch, AP)</li>
+            <li>➜ Réaliser les tests de basculement et mettre à jour la documentation technique</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap mt-5">
+          <span class="badge-info">HAProxy</span>
+          <span class="badge-info">Load Balancing</span>
+          <span class="badge-info">Veeam</span>
+          <span class="badge-info">Stormshield</span>
+          <span class="badge-info">Apache</span>
+          <span class="badge-info">ESXi</span>
+          <span class="badge-info">VPN IPsec</span>
+          <span class="badge-info">TrueNAS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- B — LE PLAN -->
+    <section class="section">
+      <div class="card">
+        <div class="section-header">
+          <div class="section-badge">B</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">Le plan</span></h3>
+        </div>
+        <hr class="divider">
+
+        <h4 class="font-bold text-lg text-gray-800 mb-3">Plan d'adressage IP</h4>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          L'infrastructure est répartie entre l'agence d'El Hierro et le siège de Tenerife,
+          reliés par un tunnel VPN IPsec. Voici le plan d'adressage complet :
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Équipement / VM</th>
+                <th>Rôle</th>
+                <th>Adresse IP</th>
+                <th>Accès</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-group-header">
+                <td colspan="4">🏢 Agence El Hierro — 192.168.54.0/24</td>
+              </tr>
+              <tr>
+                <td>Stormshield SNS 310</td>
+                <td>Pare-feu / VPN</td>
+                <td><code>192.168.54.254</code></td>
+                <td>Interface web admin</td>
+              </tr>
+              <tr>
+                <td>AD / DNS / DHCP</td>
+                <td>Windows Server 2019</td>
+                <td><code>192.168.54.10</code></td>
+                <td>RDP</td>
+              </tr>
+              <tr>
+                <td>SRV-EL-WEB-01</td>
+                <td>Serveur Apache</td>
+                <td><code>192.168.54.15</code></td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>SRV-EL-WEB-02</td>
+                <td>Serveur Apache</td>
+                <td><code>192.168.54.16</code></td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>SRV-EL-PROXY</td>
+                <td>HAProxy (DMZ)</td>
+                <td><code>192.168.64.1</code></td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>ESXi principal</td>
+                <td>Hyperviseur LAN</td>
+                <td><code>192.168.54.1</code></td>
+                <td>Interface web ESXi</td>
+              </tr>
+              <tr>
+                <td>ESXi secondaire</td>
+                <td>Hyperviseur (Load Balancing)</td>
+                <td><code>192.168.69.94</code></td>
+                <td>Interface web ESXi</td>
+              </tr>
+              <tr>
+                <td>TP-Link SG-3424</td>
+                <td>Switch manageable LAN</td>
+                <td><code>192.168.54.20</code></td>
+                <td>Interface web admin</td>
+              </tr>
+              <tr>
+                <td>AP WiFi WA901N</td>
+                <td>Borne WiFi 802.1X</td>
+                <td><code>192.168.54.30</code></td>
+                <td>Interface web admin</td>
+              </tr>
+              <tr class="table-group-header">
+                <td colspan="4">🏢 Siège Tenerife — 192.168.57.0/24</td>
+              </tr>
+              <tr>
+                <td>Zimbra Mail</td>
+                <td>Messagerie</td>
+                <td><code>192.168.57.40</code></td>
+                <td>HTTPS / interface admin</td>
+              </tr>
+              <tr>
+                <td>Centreon</td>
+                <td>Supervision SNMP</td>
+                <td><code>192.168.57.50</code></td>
+                <td>HTTPS</td>
+              </tr>
+              <tr>
+                <td>TrueNAS</td>
+                <td>NAS RAID-5 (destination Veeam)</td>
+                <td><code>192.168.57.2</code></td>
+                <td>Interface web admin</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="font-bold text-lg text-gray-800 mt-6 mb-3">Schéma d'infrastructure</h4>
+        <div class="screenshot-slot">
+          <span class="icon">🖼️</span>
+          <label>Schéma réseau</label>
+          <span>Cartographie de l'infrastructure initiale — topologie en étoile avec le siège de Tenerife centralisant les flux des agences via VPN IPsec</span>
+          <img src="schema_base_cicar_complet.svg" style="border-radius: 6px;" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- C — LE PROJET -->
+    <section class="section">
+      <div class="card">
+        <div class="section-header">
+          <div class="section-badge">C</div>
+          <h3 class="text-2xl font-bold"><span class="glow-title">Le projet</span></h3>
+        </div>
+        <hr class="divider">
+
+        <!-- Architecture trois-tiers -->
+        <div class="etape">
+          <h4>🏗️ 1. Architecture trois-tiers</h4>
+          <p>
+            Les requêtes HTTP/HTTPS en provenance d'Internet arrivent sur le pare-feu Stormshield,
+            qui les redirige par NAT vers le serveur HAProxy en DMZ (<code>192.168.64.1</code>).
+            HAProxy se charge ensuite de distribuer la charge en round-robin entre les deux serveurs
+            web situés dans le LAN : <code>WEB-01 (192.168.54.15)</code> et <code>WEB-02 (192.168.54.16)</code>.
+            Cette séparation en trois zones distinctes (WAN → DMZ → LAN) renforce la sécurité
+            de l'infrastructure en limitant l'exposition directe des serveurs applicatifs.
+          </p>
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">🛡️</span>
+          <label>Capture — Règles de filtrage Stormshield</label>
+          <img src="Capture d'écran 2026-03-30 122922.png" alt="Règles de filtrage Stormshield">
+          <span>Règles autorisant HTTP/HTTPS depuis le WAN vers la DMZ (HAProxy), et depuis la DMZ vers le LAN (WEB-01, WEB-02)</span>
+        </div>
+
+        <!-- Apache -->
+        <div class="etape">
+          <h4>⚙️ 1.1 Configuration Apache sur les serveurs web</h4>
+          <p>
+            Chaque serveur héberge un site web indépendant. Le virtual host Apache est configuré
+            pour répondre sur le domaine <code>el-cicars.es</code> et servir les fichiers
+            depuis le répertoire <code>/var/www/el-cicars</code>.
+            Cette indépendance entre les deux serveurs garantit la continuité de service
+            même si l'un d'eux est hors ligne.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <span class="comment"># /etc/apache2/sites-available/el-cicars.conf (WEB-01 & WEB-02)</span><br>
+          &lt;VirtualHost *:80&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;ServerName el-cicars.es<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;ServerAlias www.el-cicars.es<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;DocumentRoot /var/www/el-cicars<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;ErrorLog ${APACHE_LOG_DIR}/el-cicars_error.log<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;CustomLog ${APACHE_LOG_DIR}/el-cicars_access.log combined<br>
+          &lt;/VirtualHost&gt;<br><br>
+          <span class="comment"># Activation du site et rechargement d'Apache</span><br>
+          a2ensite el-cicars.conf<br>
+          systemctl reload apache2
+        </div>
+
+        <!-- HAProxy -->
+        <div class="etape">
+          <h4>⚖️ 2. Load Balancing avec HAProxy</h4>
+          <p>
+            HAProxy est configuré en mode HTTP avec un algorithme de répartition round-robin
+            et des health checks actifs. À chaque requête entrante, HAProxy interroge
+            les deux serveurs web pour s'assurer qu'ils sont disponibles (<code>option httpchk GET /</code>).
+            En cas de panne de l'un d'eux, le trafic est automatiquement redirigé vers l'autre
+            sans aucune intervention manuelle ni interruption de service côté utilisateur.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <span class="comment"># /etc/haproxy/haproxy.cfg (extrait)</span><br><br>
+          <span class="keyword">frontend</span> http_front<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;bind *:80<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;default_backend web_cluster<br><br>
+          <span class="keyword">backend</span> web_cluster<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;balance roundrobin<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;option httpchk GET /<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;server web01 192.168.54.15:80 check<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;server web02 192.168.54.16:80 check
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">📄</span>
+          <label>Capture — Configuration HAProxy</label>
+          <img src="Capture d'écran 2026-03-30 124849.png" alt="Configuration HAProxy">
+          <span>Fichier haproxy.cfg avec le frontend HTTP, le backend round-robin et les deux serveurs WEB-01 / WEB-02</span>
+        </div>
+
+        <!-- Test failover -->
+        <div class="etape">
+          <h4>🔁 2.1 Test de basculement (Failover)</h4>
+          <p>
+            Pour valider la continuité de service, le serveur WEB-01 a été arrêté volontairement
+            via la commande <code>systemctl stop apache2</code>. HAProxy a détecté la panne en environ
+            2 secondes grâce au health check et a basculé automatiquement l'ensemble du trafic
+            vers WEB-02, sans aucune interruption perceptible côté client.
+            Au redémarrage d'Apache sur WEB-01, le round-robin a repris normalement.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="screenshot-slot" style="border-color: rgba(34,197,94,0.4);">
+            <span class="icon">🟢</span>
+            <label style="color: #16a34a;">WEB-01 — 192.168.54.15</label>
+            <img src="web1.png" alt="Site WEB-01">
+            <span>Site principal. En cas de panne, HAProxy retire ce serveur du pool et bascule sur WEB-02.</span>
+          </div>
+          <div class="screenshot-slot" style="border-color: rgba(59,130,246,0.4);">
+            <span class="icon">🔵</span>
+            <label style="color: #2563eb;">WEB-02 — 192.168.54.16</label>
+            <img src="web2.png" alt="Site WEB-02">
+            <span>Site de secours indépendant. Prend le relais automatiquement si WEB-01 est indisponible.</span>
+          </div>
+        </div>
+
+        <!-- Veeam -->
+        <div class="etape">
+          <h4>💾 3. Sauvegardes des VMs avec Veeam</h4>
+          <p>
+            Veeam Backup & Replication est installé au siège de Tenerife. Les sauvegardes des machines
+            virtuelles de l'agence d'El Hierro (WEB-01, WEB-02, PROXY, AD) sont déclenchées depuis
+            la console Veeam et transférées via le tunnel VPN IPsec vers le NAS RAID-5 du siège
+            (<code>SRV-Truenas-TF — 192.168.57.2</code>). Cette solution garantit qu'en cas de sinistre
+            local, les VMs peuvent être restaurées rapidement à partir du siège.
+            La planification automatique des jobs est prévue en évolution du projet.
+          </p>
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">📀</span>
+          <label>Capture — Console Veeam Backup & Replication</label>
+          <img src="veeambackup.png" alt="Veeam Backup jobs">
+          <span>Job de sauvegarde "essai" pour l'agence El Hierro — Statut : <strong>Success</strong> — Destination : NAS TrueNAS (siège Tenerife)</span>
+        </div>
+
+        <!-- Sauvegarde configs -->
+        <div class="etape">
+          <h4>🔧 4. Sauvegarde des configurations équipements réseau</h4>
+          <p>
+            En complément des sauvegardes de VMs, les fichiers de configuration des équipements
+            d'interconnexion sont exportés et stockés sur le NAS du siège : pare-feu Stormshield,
+            switch TP-Link SG-3424 et point d'accès WiFi. Cette précaution permet de restaurer
+            rapidement la configuration réseau en cas de remplacement d'un équipement défaillant.
+          </p>
+        </div>
+
+        <div class="screenshot-slot">
+          <span class="icon">📁</span>
+          <label>Capture — Export configuration Stormshield</label>
+          <img src="Capture d'écran 2026-03-30 132300.png" alt="Export configuration Stormshield">
+          <span>Interface Stormshield — Système → Maintenance → Sauvegarde de configuration. Le fichier exporté est ensuite déposé sur le NAS du siège.</span>
+        </div>
+
+        <div class="code-block">
+          <span class="comment"># Sauvegarde de la configuration du switch TP-Link via SSH</span><br>
+          ssh admin@192.168.54.20<br>
+          copy startup-config tftp 192.168.54.10 backup_switch_elhierro.cfg
+        </div>
+
+        <!-- Vérifications -->
+        <div class="etape">
+          <h4>✅ 5. Vérifications finales</h4>
+          <p>
+            Une fois l'ensemble des éléments déployés, plusieurs vérifications ont été effectuées
+            pour s'assurer du bon fonctionnement de l'infrastructure : état des services Apache
+            sur les deux serveurs web, lecture des logs HAProxy en temps réel pour confirmer
+            la répartition du trafic, et test de résolution DNS pour valider la cohérence
+            de la configuration AD/DNS.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <span class="comment"># Vérification de l'état d'Apache sur WEB-01</span><br>
+          systemctl status apache2<br><br>
+          <span class="comment"># Lecture des logs HAProxy en temps réel</span><br>
+          tail -f /var/log/haproxy.log<br><br>
+          <span class="comment"># Test de résolution DNS via le serveur AD</span><br>
+          nslookup el-cicars.es 192.168.54.10
+        </div>
+
+        <!-- Bilan livrables -->
+        <div class="mt-8 p-6 rounded-2xl" style="background: rgba(255,42,42,0.03); border: 1px solid rgba(255,50,50,0.2);">
+          <h4 class="font-bold text-lg text-red-500 mb-4">📋 Livrables validés</h4>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Architecture trois-tiers opérationnelle (WAN → DMZ HAProxy → LAN WEB-01/WEB-02)</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Load balancing HAProxy avec round-robin et health checks actifs</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Test de basculement validé — continuité de service en cas de panne d'un serveur web</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Sauvegardes Veeam des VMs vers le NAS RAID-5 du siège (via VPN IPsec)</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Sauvegarde des configurations Stormshield, switch TP-Link et AP WiFi</span></div>
+          <div class="bilan-item"><span class="bilan-check">✔</span><span>Schéma réseau et plan d'adressage mis à jour</span></div>
+        </div>
+
+        <!-- Schéma final -->
+        <h4 class="font-bold text-lg text-gray-800 mt-8 mb-3">Schéma réseau final</h4>
+        <div class="screenshot-slot">
+          <span class="icon">🗺️</span>
+          <label>Schéma RP 2 — Infrastructure finale</label>
+          <img src="schema_ppe2_cicar.svg" alt="">
+          <span>Architecture complète incluant l'externalisation sur El Hierro, le load balancing HAProxy et les sauvegardes Veeam vers le siège de Tenerife</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 py-10 border-t border-red-200">
+    © 2025 – KC – BTS SIO - <a href="mentions-legales.html">Mentions légales</a>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+
+</body>
+</html>
