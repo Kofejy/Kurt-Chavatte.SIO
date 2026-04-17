@@ -97,7 +97,7 @@
 <!-- NAVBAR -->
 <header class="fixed top-0 w-full z-50 bg-white/70 premium-border">
   <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-red-500">Kurt CHAVATTE</h1>
+    <h1 class="text-2xl font-bold text-red-500"><a href="https://www.linkedin.com/in/kurt-chavatte/">Kurt CHAVATTE</a></h1>
     <nav>
       <ul class="flex gap-10 text-lg font-medium">
         <li><a href="#hero" class="hover:text-red-500">Accueil</a></li>
@@ -194,38 +194,98 @@
 </section>
 
 <!-- COMPETENCES -->
-<section id="competences" class="min-h-screen flex items-center px-6 section">
-  <div class="max-w-5xl mx-auto space-y-8">
-    <h2 class="text-5xl font-bold"><span class="glow-title">Compétences</span> 🛠️</h2>
+<section id="competences" class="px-6 py-20 section">
+  <div class="max-w-5xl mx-auto space-y-10">
 
+    <h2 class="text-5xl font-bold">
+      <span class="glow-title">Compétences</span> 🛠️
+    </h2>
+
+    <!-- BLOCS COMPETENCES -->
     <div class="grid md:grid-cols-2 gap-6">
-      <div class="card"><h3 class="text-xl text-red-500 font-semibold">💻 Développement</h3><p>HTML, CSS, PHP, Python, SQL</p></div>
-      <div class="card"><h3 class="text-xl text-red-500 font-semibold">🌐 Réseaux</h3><p>Linux, Windows Server, Cisco</p></div>
-      <div class="card"><h3 class="text-xl text-red-500 font-semibold">🔒 Cybersécurité</h3><p>RGPD, sauvegardes, accès</p></div>
-      <div class="card"><h3 class="text-xl text-red-500 font-semibold">🧰 Outils</h3><p>Git, VMware, PowerShell</p></div>
+      <div class="card">
+        <h3 class="text-xl text-red-500 font-semibold">💻 Développement</h3>
+        <p>HTML, CSS, PHP, Python, SQL</p>
+      </div>
+
+      <div class="card">
+        <h3 class="text-xl text-red-500 font-semibold">🌐 Réseaux</h3>
+        <p>Linux, Windows Server, Cisco</p>
+      </div>
+
+      <div class="card">
+        <h3 class="text-xl text-red-500 font-semibold">🔒 Cybersécurité</h3>
+        <p>RGPD, sauvegardes, accès</p>
+      </div>
+
+      <div class="card">
+        <h3 class="text-xl text-red-500 font-semibold">🧰 Outils</h3>
+        <p>Git, VMware, PowerShell</p>
+      </div>
     </div>
-    <br>
-    <a href="KC_tableau_bts_e4.xlsx">
+
+    <!-- TABLEAU -->
+    <a href="KC_tableau_bts_e4.xlsx" class="block">
+      <div class="card hover:scale-[1.01] transition">
+        <h3 class="text-3xl font-bold mb-3">
+          📈 <span class="glow-title">Tableau de compétences</span>
+        </h3>
+        <p class="text-lg">
+          Tableau regroupant toutes les compétences acquises durant ces deux années.
+        </p>
+        <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p>
+      </div>
+    </a>
+
+    <!-- PROJETS -->
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <a href="masterisation.html" class="block">
         <div class="card">
-      <h3 class="text-3xl font-bold mb-3">📈<span class="glow-title">Tableau de compétences</span></h3>
-      <p class="text-lg">
-        Tableau regroupant toutes les compétences que j'ai pu acquérir au cours de ces deux dernières années.
-      </p>
-      <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p>
+          <h3 class="text-xl text-red-500 font-semibold">
+            📋 <span class="glow-title">Procédure de masterisation</span>
+          </h3>
+          <p>Procédure détaillant les étapes d’une masterisation de poste.</p>
+          <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p>
+        </div>
+      </a>
+
+      <a href="bbx-randomizer.html" class="block">
+        <div class="card">
+          <h3 class="text-xl text-red-500 font-semibold">
+            🌪️ <span class="glow-title">Projet randomisation</span>
+          </h3>
+          <p>Site de génération aléatoire de combos de toupies Beyblade.</p>
+          <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p>
+        </div>
+      </a>
+
+      <a href="RP/RP2.html" class="block">
+        <div class="card">
+          <h3 class="text-xl text-red-500 font-semibold">
+            🚗 <span class="glow-title">Projet CICAR - RP2</span>
+          </h3>
+          <p>
+            Infrastructure réseau haute disponibilité avec load balancing et sauvegardes sécurisées.
+          </p>
+          <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p>
+        </div>
+      </a>
+
+      <a href="RP/RP4.html" class="block">
+        <div class="card">
+          <h3 class="text-xl text-red-500 font-semibold">
+            🚗 <span class="glow-title">Projet CICAR - RP4</span>
+          </h3>
+          <p>
+            Administration centralisée, sécurité renforcée et redondance réseau.
+          </p>
+          <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p>
+        </div>
+      </a>
+
     </div>
-    </a>
-    <br>
-      <div class="grid md:grid-cols-2 gap-6">
-      <a href="masterisation.html"><div class="card"><h3 class="text-xl text-red-500 font-semibold">📋<span class="glow-title">Procédure de masterisation</span></h3><p>Procédure montrant les différentes étapes d'une masterisation de poste.</p>
-      <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p></div></a>
-      <a href="bbx-randomizer.html"><div class="card"><h3 class="text-xl text-red-500 font-semibold">🌪️<span class="glow-title">Projet de randomisation combos</span></h3><p>Projet de création d'un site concernant la randomisation de combos de toupies Beyblades.</p>
-      <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p></div></a>
-      <a href="RP/RP2.html"><div class="card"><h3 class="text-xl text-red-500 font-semibold">🚗<span class="glow-title">Projet CICAR - RP 2</span></h3><p>Déploiement d’une infrastructure réseau haute disponibilité avec load balancing, tolérance aux pannes et sauvegardes sécurisées des systèmes et équipements.</p>
-        <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p></div></a>
-      <a href="RP/RP4.html"><div class="card"><h3 class="text-xl text-red-500 font-semibold">🚗<span class="glow-title">Projet Cicar - RP 4</span></h3><p>Admin centralisé via MobaXterm, sécurité Stormshield (2FA + filtrage), déploiement GLPI pour inventaire/tickets, et redondance FAI HSRP Cisco.</p>
-        <p class="mt-4 text-red-500 font-semibold">➜ Voir le détail</p></div></a>
-    </div>
-    </a>
+
   </div>
 </section>
 
